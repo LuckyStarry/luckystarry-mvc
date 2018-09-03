@@ -1,0 +1,42 @@
+import 'reflect-metadata'
+
+export interface IServiceContainer {
+  AddService<T>(type: Function)
+  GetService<T>(constructorFunction: { new (...args: Array<any>): T }): T
+}
+
+export class ServiceContainer implements IServiceContainer {
+  public static Current: IServiceContainer = new ServiceContainer()
+
+  private classPool: Array<Function> = []
+
+  public AddService<T>(type: Function) {
+    let paramTypes: Array<Function> = Reflect.getMetadata(
+      'design:paramtypes',
+      type
+    )
+    if (this.classPool.indexOf(type) != -1) return
+    for (let val of paramTypes) {
+      if (val === type) throw new Error('不能依赖自己')
+      else if (this.classPool.indexOf(val) == -1)
+        throw new Error(`${val}没有被注册`)
+    }
+    this.classPool.push(type)
+  }
+
+  public GetService<T>(type: { new (...args: Array<any>): T }): T {
+    let paramTypes: Array<Function> = Reflect.getMetadata(
+      'design:paramtypes',
+      type
+    )
+    let paramInstance = paramTypes.map((val: Function) => {
+      if (this.classPool.indexOf(val) == -1) throw new Error(`${val}没有被注册`)
+      else if (val.length) {
+        return this.GetService(val as any)
+      } else {
+        return new (val as any)()
+      }
+    })
+    return new type(...paramInstance)
+  }
+}

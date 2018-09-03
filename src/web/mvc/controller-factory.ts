@@ -1,6 +1,6 @@
 import { RequestContext } from '../routing'
 import { IController, ControllerCollection } from './controller'
-import { GetService } from '../../utils'
+import { ServiceContainer } from '../../service-container'
 
 export interface IControllerFactory {
   CreateController(
@@ -21,7 +21,7 @@ export class DefaultControllerFactory implements IControllerFactory {
     controllerName: string
   ): IController {
     let type = this.controllerCollection.GetController(controllerName)
-    let controller = GetService(type)
+    let controller = ServiceContainer.Current.GetService(type)
     return controller
   }
 }

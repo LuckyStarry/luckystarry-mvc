@@ -1,12 +1,10 @@
 import http from 'http'
-import * as utils from '../utils'
 import { IHttpModule } from './http-module'
 import { HttpContext } from './http-context'
 import { EventHandler } from './event-handler'
 import { PayloadEventArgs } from './payload-event-args'
 
 export class HttpApplication {
-  private port: number
   private server: http.Server
   private modules: Array<IHttpModule>
 
@@ -18,13 +16,6 @@ export class HttpApplication {
     for (let module of this.modules) {
       module.Init(this)
     }
-    let port = utils.stringToInt(process.env.PORT)
-    if (port < 10) {
-      port = 3000
-    } else if (port > 65535) {
-      port = 3000
-    }
-    this.port = port
 
     this.server = http.createServer(
       (request: http.IncomingMessage, response: http.ServerResponse) => {
@@ -37,31 +28,29 @@ export class HttpApplication {
         this.PostRequestHandlerExecute.Trigger(this, eventArgs)
       }
     )
-    this.server.on('error', err => this.OnError(err))
-    this.server.on('listening', () => this.OnListening())
   }
 
   public RegisterModule(module: IHttpModule): void {
     this.modules.push(module)
   }
 
-  public Start(): void {
+  public Start(options?: { Port?: number }): void {
+    options = Object.assign({ Port: 3000 }, options)
     this.Application_Start()
-    this.server.listen(this.port)
+    this.server.on('error', err => this.onError(err, options.Port))
+    this.server.on('listening', () => this.onListening())
+    this.server.listen(options.Port)
   }
 
   public Application_Start(): void {}
 
-  public OnError(error) {
+  private onError(error, port: number) {
     if (error) {
       if (error.syscall !== 'listen') {
         throw error
       }
 
-      let bind =
-        typeof this.port === 'string'
-          ? 'Pipe ' + this.port
-          : 'Port ' + this.port
+      let bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port
 
       switch (error.code) {
         case 'EACCES':
@@ -78,7 +67,7 @@ export class HttpApplication {
     }
   }
 
-  public OnListening() {
+  private onListening() {
     let addr = this.server.address()
     let bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port
     console.log('Listening on ' + bind)
