@@ -1,2 +1,3 @@
-# luckystarry-mvc
-一个仿ASP.NET MVC的 NODEJS 框架
+# LuckyStarry-MVC
+
+一个仿 ASP.NET MVC 的 NODEJS 框架
