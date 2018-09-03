@@ -1,0 +1,23 @@
+{
+  "name": "luckystarry-mvc",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node index.js",
+    "build": "cross-env NODE_ENV=production gulp build",
+    "build-dev": "cross-env NODE_ENV=dev gulp build",
+    "dev": "cross-env NODE_ENV=dev gulp dev"
+  },
+  "dependencies": {
+    "reflect-metadata": "^0.1.12",
+    "typescript": "^3.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^10.9.2",
+    "cross-env": "^5.2.0",
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-typescript": "^5.0.0-alpha.3",
+    "supervisor": "^0.12.0"
+  }
+}
