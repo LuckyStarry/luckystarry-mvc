@@ -6,7 +6,7 @@
     "mvc"
   ],
   "scripts": {
-    "prebuild": "rm -rf dist",
+    "prebuild": "del-cli dist -f",
     "build": "tsc"
   },
   "main": "dist/index.js",
@@ -17,6 +17,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^10.9.2",
+    "del-cli": "^1.1.0",
     "tslint": "^5.11.0",
     "tslint-config-standard": "^8.0.1"
   },
