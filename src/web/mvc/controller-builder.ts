@@ -1,4 +1,8 @@
-import { IControllerFactory } from './controller-factory'
+import {
+  IControllerFactory,
+  DefaultControllerFactory
+} from './controller-factory'
+import { ControllerCollection } from './controller'
 
 export class ControllerBuilder {
   public static Current: ControllerBuilder = new ControllerBuilder()
@@ -15,3 +19,7 @@ export class ControllerBuilder {
     return this.factoryThunk()
   }
 }
+
+ControllerBuilder.Current.SetControllerFactory(
+  new DefaultControllerFactory(ControllerCollection.Current)
+)
