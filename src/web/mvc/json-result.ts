@@ -1,5 +1,4 @@
 import { ContentResult } from './content-result'
-import { ControllerContext } from './controller-context'
 
 export class JsonResult extends ContentResult {
   public constructor(content: any) {
