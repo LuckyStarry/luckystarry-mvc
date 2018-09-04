@@ -1,6 +1,6 @@
 {
   "name": "luckystarry-mvc",
-  "version": "0.0.1-alpha.2",
+  "version": "0.0.1-alpha.4",
   "description": "一个轻量的类似于 ASP.NET MVC 的 WebApi 服务",
   "keywords": [
     "mvc"

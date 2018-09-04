@@ -1,9 +1,9 @@
 import { mvc, routing, HttpApplication } from './web'
 
 export function Install(options: {
-  controllers: mvc.Controller[]
-  registerRoutes: (routes: routing.RouteDictionary) => void
-  onApplicationStart: () => void
+  controllers?: { new (...args: Array<any>): mvc.Controller }[]
+  registerRoutes?: (routes: routing.RouteDictionary) => void
+  onApplicationStart?: () => void
 }) {
   let port = parseInt(process.env.PORT, 10)
   if (isNaN(port)) {
