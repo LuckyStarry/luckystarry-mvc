@@ -96,7 +96,7 @@ export class Route extends RouteBase {
                 type = type.toLowerCase()
                 switch (type) {
                   case 'int':
-                    obj = parseInt(value)
+                    obj = parseInt(value, 10)
                     break
                   case 'float':
                     obj = parseFloat(value)

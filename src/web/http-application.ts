@@ -42,6 +42,7 @@ export class HttpApplication {
     this.server.listen(options.Port)
   }
 
+  // tslint:disable-next-line:no-empty
   public Application_Start(): void {}
 
   private onError(error, port: number) {

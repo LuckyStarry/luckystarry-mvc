@@ -15,11 +15,12 @@ export class ServiceContainer implements IServiceContainer {
       'design:paramtypes',
       type
     )
-    if (this.classPool.indexOf(type) != -1) return
+    if (this.classPool.indexOf(type) !== -1) return
     for (let val of paramTypes) {
       if (val === type) throw new Error('不能依赖自己')
-      else if (this.classPool.indexOf(val) == -1)
+      else if (this.classPool.indexOf(val) === -1) {
         throw new Error(`${val}没有被注册`)
+      }
     }
     this.classPool.push(type)
   }
@@ -30,8 +31,9 @@ export class ServiceContainer implements IServiceContainer {
       type
     )
     let paramInstance = paramTypes.map((val: Function) => {
-      if (this.classPool.indexOf(val) == -1) throw new Error(`${val}没有被注册`)
-      else if (val.length) {
+      if (this.classPool.indexOf(val) === -1) {
+        throw new Error(`${val}没有被注册`)
+      } else if (val.length) {
         return this.GetService(val as any)
       } else {
         return new (val as any)()

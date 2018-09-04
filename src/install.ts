@@ -5,7 +5,7 @@ export function Install(options: {
   registerRoutes: (routes: routing.RouteDictionary) => void
   onApplicationStart: () => void
 }) {
-  let port = parseInt(process.env.PORT)
+  let port = parseInt(process.env.PORT, 10)
   if (isNaN(port)) {
     port = 3000
   } else if (port < 10) {
@@ -15,6 +15,7 @@ export function Install(options: {
   }
 
   const application = new HttpApplication()
+  // tslint:disable-next-line:no-empty
   application.Application_Start = options.onApplicationStart || (() => {})
   application.RegisterModule(new routing.UrlRoutingModule())
   application.Init()

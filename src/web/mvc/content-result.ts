@@ -6,12 +6,7 @@ export class ContentResult extends ActionResult {
   private 'content-type': string
 
   public constructor(
-    content:
-      | string
-      | {
-          content: string
-          'content-type': string
-        }
+    content: string | { content: string; 'content-type': string }
   ) {
     super()
     if (typeof content === 'string') {
@@ -25,7 +20,7 @@ export class ContentResult extends ActionResult {
   public ExecuteResult(context: ControllerContext): void {
     context.RequestContext.HttpContext.Response.Write(this.content)
     if (this['content-type']) {
-      context.RequestContext.HttpContext.Response
+      // TODO 写入Header，context.RequestContext.HttpContext.Response
     }
     context.RequestContext.HttpContext.Response.End()
   }
