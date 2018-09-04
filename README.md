@@ -3,12 +3,14 @@
 一个仿 ASP.NET MVC 的 NODEJS 框架
 
 [![Build Status](https://www.travis-ci.org/LuckyStarry/luckystarry-mvc.svg)](https://www.travis-ci.org/LuckyStarry/luckystarry-mvc)
+[![Npm Status](https://img.shields.io/npm/v/luckystarry-mvc.svg)](https://www.npmjs.com/package/luckystarry-mvc)
+[![License Status](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://raw.githubusercontent.com/LuckyStarry/luckystarry-mvc/master/LICENSE)
 
 ## LICENSE
 
 MIT License
 
-Copyright (c) 2018 SUN BO
+Copyright (c) 2018 SUN BO <starry@vip.qq.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

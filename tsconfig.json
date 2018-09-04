@@ -9,8 +9,10 @@
     "target": "es5",
     "moduleResolution": "node",
     "isolatedModules": false,
-    "lib": ["dom", "es5", "es2015"],
-    "sourceMap": true,
-    "pretty": true
+    "lib": ["es5", "es2015"],
+    "sourceMap": false,
+    "pretty": true,
+    "declaration": true,
+    "outDir": "dist"
   }
 }
