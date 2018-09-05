@@ -1,0 +1,4 @@
+-r ts-node/register test/**/*.spec.ts
+--bail
+--recursive
+--reporter nyan

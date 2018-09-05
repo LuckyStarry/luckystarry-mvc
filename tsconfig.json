@@ -6,13 +6,14 @@
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,
     "module": "commonjs",
-    "target": "es5",
+    "target": "es2015",
     "moduleResolution": "node",
     "isolatedModules": false,
     "lib": ["es5", "es2015"],
     "sourceMap": false,
     "pretty": true,
     "declaration": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "baseUrl": "src"
   }
 }
