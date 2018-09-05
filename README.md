@@ -3,6 +3,7 @@
 一个仿 ASP.NET MVC 的 NODEJS 框架
 
 [![Build Status](https://www.travis-ci.org/LuckyStarry/luckystarry-mvc.svg)](https://www.travis-ci.org/LuckyStarry/luckystarry-mvc)
+[![Coverage Status](https://coveralls.io/repos/github/LuckyStarry/luckystarry-mvc/badge.svg)](https://coveralls.io/github/LuckyStarry/luckystarry-mvc)
 [![Npm Status](https://img.shields.io/npm/v/luckystarry-mvc.svg)](https://www.npmjs.com/package/luckystarry-mvc)
 [![License Status](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://raw.githubusercontent.com/LuckyStarry/luckystarry-mvc/master/LICENSE)
 
