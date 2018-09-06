@@ -7,6 +7,56 @@
 [![Npm Status](https://img.shields.io/npm/v/luckystarry-mvc.svg)](https://www.npmjs.com/package/luckystarry-mvc)
 [![License Status](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://raw.githubusercontent.com/LuckyStarry/luckystarry-mvc/master/LICENSE)
 
+## Warning
+
+使用须知：**本框架仍处于设计开发阶段，很多接口可能会随时调整，建议现阶段慎重使用**
+
+## Install
+
+```bash
+npm i -S luckystarry-mvc
+```
+
+## Usage
+
+简单的安装代码如下所示：
+
+```typescript
+// index.ts
+import luckystarry from 'luckystarry-mvc'
+
+@luckystarry.Injectable()
+@luckystarry.web.mvc.ControllerAttribute()
+class FooController extends luckystarry.web.mvc.Controller {
+  @luckystarry.web.mvc.RouteAttribute()
+  public Bar(): string {
+    return 'Hello World'
+  }
+}
+
+const application = luckystarry.Build()
+application.Start()
+```
+
+为了使用 _注解_ 的特性，请在项目运行目录添加 _tsconfig.json_
+
+```json
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  }
+}
+```
+
+然后您就可以使用如下命令启动站点
+
+```bash
+ts-node/register index.ts
+```
+
+当站点启动后，在浏览器中输入 `http://localhost:3000/foo/bar` 地址，就可以得到响应 `Hello World`
+
 ## LICENSE
 
 MIT License
