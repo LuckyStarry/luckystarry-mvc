@@ -24,7 +24,7 @@ jobs:
       - stage: deploy
         script:
           - echo "NPM Deploying Started ..."
-          - npm version
+          - npm version prerelease
           - npm run build
           - echo "NPM Building Finished."
         deploy:
