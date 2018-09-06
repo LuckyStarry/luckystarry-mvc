@@ -46,9 +46,20 @@ jobs:
           branch: prerelease
         tag: beta
 
-    - stage: prerelease-release
-      if: branch = prerelease
+    - stage: tagged-prerelease
+      if: tag =~ ^v\d+\.\d+\.\d+-.*$
       deploy:
         provider: releases
         api_key: '$GH_TOKEN'
         skip_cleanup: true
+        on:
+          tags: true
+
+    - stage: tagged-release
+      if: tag =~ ^v\d+\.\d+\.\d+$
+      deploy:
+        provider: releases
+        api_key: '$GH_TOKEN'
+        skip_cleanup: true
+        on:
+          tags: true
