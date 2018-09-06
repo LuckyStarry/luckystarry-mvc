@@ -21,15 +21,18 @@ jobs:
 
     - stage: develop
       if: branch = develop
-      script:
+      before_deploy:
         - echo "NPM Version Started ..."
-        - git init
         - git config user.name "${U_NAME}"
         - git config user.email "${U_EMAIL}"
         - git checkout .
         - npm version prerelease -m "Upgrade to %s for reasons"
-        - git push --tags --force --quiet "https://${GH_TOKEN}@${GH_REF}" develop:prerelease
         - echo "NPM Version Finished."
+      deploy:
+        provider: releases
+        api_key: ${GH_TOKEN}
+        skip_cleanup: true
+        prerelease: true
 
     - stage: prerelease
       if: branch = prerelease
