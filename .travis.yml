@@ -23,7 +23,6 @@ jobs:
       if: branch = develop
       script:
         - echo "NPM Version Started ..."
-        - git init
         - git config user.name "${U_NAME}"
         - git config user.email "${U_EMAIL}"
         - npm version prerelease -m "Upgrade to %s for reasons"
