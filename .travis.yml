@@ -27,14 +27,10 @@ jobs:
         - git config user.email "${U_EMAIL}"
         - git checkout .
         - npm version prerelease -m "Upgrade to %s"
-        - echo "NPM Tagged Finished. => $(git describe --tags `git rev-list --tags --max-count=1`)"
+        - git push --tags --force --quiet "https://${GH_TOKEN}@${GH_REF}" develop:prerelease
         - echo "NPM Version Finished."
-      deploy:
-        provider: releases
-        api_key: '$GH_TOKEN'
-        skip_cleanup: true
 
-    - stage: prerelease
+    - stage: prerelease-npm
       if: branch = prerelease
       script:
         - echo "NPM Deploying Started ..."
@@ -48,3 +44,12 @@ jobs:
         on:
           branch: prerelease
         tag: beta
+
+    - stage: prerelease-release
+      if: branch = prerelease
+      deploy:
+        provider: releases
+        api_key: '$GH_TOKEN'
+        skip_cleanup: true
+      on:
+        tags: true
