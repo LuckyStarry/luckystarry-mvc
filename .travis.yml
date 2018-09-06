@@ -19,8 +19,8 @@ jobs:
       after_success:
         - npm run coverage
 
-    - stage: develop
-      if: branch = develop
+    - stage: master
+      if: branch = master
       script:
         - echo "NPM Version Started ..."
         - git config user.name "${U_NAME}"
@@ -52,15 +52,16 @@ jobs:
         email: starry@vip.qq.com
         api_key: '$NPM_TOKEN'
         skip_cleanup: true
-        on:
-          branch: prerelease
         tag: beta
 
-    - stage: tagged-release
+    - stage: npm-release
       if: tag =~ ^v\d+\.\d+\.\d+$
+      script:
+        - echo "NPM Deploying Started ..."
+        - npm run build
+        - echo "NPM Building Finished."
       deploy:
-        provider: releases
-        api_key: '$GH_TOKEN'
-        skip_cleanup: false
-        on:
-          tags: true
+        provider: npm
+        email: starry@vip.qq.com
+        api_key: '$NPM_TOKEN'
+        skip_cleanup: true
