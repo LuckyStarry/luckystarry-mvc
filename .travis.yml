@@ -33,8 +33,6 @@ jobs:
         provider: releases
         api_key: '$GH_TOKEN'
         skip_cleanup: true
-        on:
-          tags: true
 
     - stage: prerelease
       if: branch = prerelease
