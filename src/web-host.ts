@@ -28,6 +28,10 @@ export class LuckyStarryWebHost implements IWebHost {
     } else if (port > 65535) {
       port = 3000
     }
-    http.createServer(this.app.Build()).listen(port)
+    http
+      .createServer((req, res) => {
+        this.app.Build()
+      })
+      .listen(port)
   }
 }
