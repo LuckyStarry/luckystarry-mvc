@@ -1,7 +1,7 @@
 import { expect } from 'chai'
-import { EventHandler } from '../../src/web/event-handler'
+import { EventHandler } from '../src/event-handler'
 
-describe('/web/event-handler.ts', function() {
+describe('/event-handler.ts', function() {
   it('存在 Class EventHandler', function() {
     expect(typeof EventHandler).to.equal('function')
   })

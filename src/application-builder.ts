@@ -1,5 +1,4 @@
-import http from 'http'
-import { IServiceProvider, ServiceProvider } from './service-provider'
+import { IServiceProvider } from './service-provider'
 import { RequestDelegate } from './request-delegate'
 
 export interface IApplicationBuilder {
@@ -19,11 +18,17 @@ export class ApplicationBuilder implements IApplicationBuilder {
   public Use(
     middleware: (request: RequestDelegate) => RequestDelegate
   ): IApplicationBuilder {
+    if (!middleware) {
+      throw new Error('不可使用空的中间件')
+    }
     this.middlewares.push(middleware)
     return this
   }
 
   public set ApplicationServices(value: IServiceProvider) {
+    if (!value) {
+      throw new Error('不可写入空对象')
+    }
     this.applicationServices = value
   }
 
@@ -32,9 +37,17 @@ export class ApplicationBuilder implements IApplicationBuilder {
   }
 
   public Build(): RequestDelegate {
-    let app: RequestDelegate = async context => Promise.resolve()
-    for (let middleware of this.middlewares.reverse()) {
-      app = middleware(app)
+    let app: RequestDelegate
+    if (this.middlewares.length) {
+      app = async context => Promise.resolve()
+      for (let middleware of this.middlewares.reverse()) {
+        app = middleware(app)
+      }
+    } else {
+      app = async context => {
+        context.Response.Write('Powered by LuckyStarry.com')
+        context.Response.End()
+      }
     }
     return app
   }

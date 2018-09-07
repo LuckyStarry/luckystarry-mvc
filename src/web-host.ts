@@ -1,6 +1,8 @@
 import http from 'http'
 import { WebHostBuilder } from './web-host-builder'
 import { IApplicationBuilder } from './application-builder'
+import { RequestDelegate } from './request-delegate'
+import { HttpContext } from './web'
 
 export interface IWebHost {
   Start()
@@ -13,10 +15,10 @@ export class WebHost {
 }
 
 export class LuckyStarryWebHost implements IWebHost {
-  private app: IApplicationBuilder
+  private middleware: RequestDelegate
 
   public constructor(app: IApplicationBuilder) {
-    this.app = app
+    this.middleware = app.Build()
   }
 
   public Start() {
@@ -30,8 +32,20 @@ export class LuckyStarryWebHost implements IWebHost {
     }
     http
       .createServer((req, res) => {
-        this.app.Build()
+        this.RequestListener(req, res)
       })
       .listen(port)
+  }
+
+  public async RequestListener(
+    request: http.IncomingMessage,
+    response: http.ServerResponse
+  ) {
+    let context = new HttpContext({ request, response })
+    try {
+      await this.middleware(context)
+    } catch (e) {
+      // TODO
+    }
   }
 }

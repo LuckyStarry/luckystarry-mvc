@@ -1,61 +1,58 @@
 import { expect } from 'chai'
+import { Injectable } from '../src/injectable'
+import { ServiceCollection } from '../src/service-collection'
 import {
   ServiceContainer,
   ClassPool,
   IServiceContainer
 } from '../src/service-container'
-import { Injectable } from '../src/injectable'
 
-describe('/service-container.ts', function() {
-  it('存在 class ServiceContainer', function() {
-    expect(typeof ServiceContainer).to.equal('function')
+describe('/service-collection.ts', function() {
+  it('存在 Class ServiceCollection', function() {
+    expect(typeof ServiceCollection).to.equal('function')
   })
 
-  it('ServiceContainer.Current 是常量', function() {
-    expect(ServiceContainer.Current).to.equal(ServiceContainer.Current)
-  })
-
-  it('ServiceContainer.AddService 无参构造类注册不报错', function() {
-    let container = new ServiceContainer()
+  it('ServiceCollection.AddTransient 无参构造类注册不报错', function() {
+    let collection = new ServiceCollection()
     expect(() => {
-      container.AddService(TestService)
+      collection.AddTransient(TestService)
     }).not.throw()
   })
 
-  it('ServiceContainer.AddService 重复注册不报错', function() {
-    let container = new ServiceContainer()
-    container.AddService(TestService)
+  it('ServiceCollection.AddTransient 重复注册不报错', function() {
+    let collection = new ServiceCollection()
+    collection.AddTransient(TestService)
     expect(() => {
-      container.AddService(TestService)
+      collection.AddTransient(TestService)
     }).not.throw()
   })
 
-  it('ServiceContainer.AddService 有参构造类注册不报错', function() {
-    let container = new ServiceContainer()
+  it('ServiceCollection.AddTransient 有参构造类注册不报错', function() {
+    let collection = new ServiceCollection()
     expect(() => {
-      container.AddService(TestService)
-      container.AddService(TestBiz)
+      collection.AddTransient(TestService)
+      collection.AddTransient(TestBiz)
     }).not.throw()
   })
 
-  it('ServiceContainer.AddService 有依赖构造类未注册依赖类时注册报错', function() {
-    let container = new ServiceContainer()
+  it('ServiceCollection.AddTransient 有依赖构造类未注册依赖类时注册报错', function() {
+    let collection = new ServiceCollection()
     expect(() => {
-      container.AddService(TestBiz)
+      collection.AddTransient(TestBiz)
     }).to.throw('没有被注册')
   })
 
-  it('ServiceContainer.AddService 有自身依赖构造类注册报错', function() {
-    let container = new ServiceContainer()
+  it('ServiceCollection.AddTransient 有自身依赖构造类注册报错', function() {
+    let collection = new ServiceCollection()
     expect(() => {
-      container.AddService(TestServiceSelfRel)
+      collection.AddTransient(TestServiceSelfRel)
     }).to.throw('不能依赖自身')
   })
 
-  it('ServiceContainer.GetService 无参构造类获取正常', function() {
-    let container = new ServiceContainer()
-    container.AddService(TestService)
-    let service = container.GetService(TestService)
+  it('ServiceCollection.AddTransient 无参构造类获取正常', function() {
+    let collection = new ServiceCollection()
+    collection.AddTransient(TestService)
+    let service = collection.GetService(TestService)
     // tslint:disable-next-line:no-unused-expression
     expect(service).not.be.null
     // tslint:disable-next-line:no-unused-expression
@@ -64,11 +61,11 @@ describe('/service-container.ts', function() {
     expect(service instanceof TestService).is.true
   })
 
-  it('ServiceContainer.GetService 有参构造类获取正常', function() {
-    let container = new ServiceContainer()
-    container.AddService(TestService)
-    container.AddService(TestBiz)
-    let biz = container.GetService(TestBiz)
+  it('ServiceCollection.GetService 有参构造类获取正常', function() {
+    let collection = new ServiceCollection()
+    collection.AddTransient(TestService)
+    collection.AddTransient(TestBiz)
+    let biz = collection.GetService(TestBiz)
     // tslint:disable-next-line:no-unused-expression
     expect(biz).not.be.null
     // tslint:disable-next-line:no-unused-expression
@@ -83,11 +80,12 @@ describe('/service-container.ts', function() {
     expect(biz.Service instanceof TestService).is.true
   })
 
-  it('ServiceContainer.GetService 有参构造类未注册依赖类时获取报错', function() {
+  it('ServiceCollection.GetService 有参构造类未注册依赖类时获取报错', function() {
     let pool = new Array<Function>(TestBiz)
     let container = new ServiceContainer(pool)
+    let collection = new ServiceCollection(container)
     expect(() => {
-      container.GetService(TestBiz)
+      collection.GetService(TestBiz)
     }).to.throw('没有被注册')
   })
 })

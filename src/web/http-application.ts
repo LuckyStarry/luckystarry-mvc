@@ -1,8 +1,8 @@
 import http from 'http'
 import { IHttpModule } from './http-module'
 import { HttpContext } from './http-context'
-import { EventHandler } from './event-handler'
-import { PayloadEventArgs } from './payload-event-args'
+import { EventHandler } from '../event-handler'
+import { PayloadEventArgs } from '../payload-event-args'
 
 export class HttpApplication {
   private server: http.Server
