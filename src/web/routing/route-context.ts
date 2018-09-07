@@ -5,18 +5,18 @@ import { RequestDelegate } from '../../request-delegate'
 export class RouteContext {
   private httpContext: HttpContext
   private routeData: RouteData
-  private requestDelegate: RequestDelegate
+  private handler: RequestDelegate
 
   public constructor(httpContext: HttpContext) {
     this.httpContext = httpContext
   }
 
-  public set RequestDelegate(value: RequestDelegate) {
-    this.requestDelegate = value
+  public set Handler(value: RequestDelegate) {
+    this.handler = value
   }
 
-  public get RequestDelegate(): RequestDelegate {
-    return this.requestDelegate
+  public get Handler(): RequestDelegate {
+    return this.handler
   }
 
   public get HttpContext(): HttpContext {
