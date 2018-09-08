@@ -9,6 +9,9 @@ export class RouteCollection implements IRouteCollection {
   private readonly routes: Array<IRouter> = []
 
   public Add(router: IRouter): void {
+    if (!router) {
+      throw new Error('路由不可为空')
+    }
     this.routes.push(router)
   }
 

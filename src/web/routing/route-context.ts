@@ -8,6 +8,9 @@ export class RouteContext {
   private handler: RequestDelegate
 
   public constructor(httpContext: HttpContext) {
+    if (!httpContext) {
+      throw new Error('未传入HTTP上下文')
+    }
     this.httpContext = httpContext
   }
 
