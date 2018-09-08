@@ -1,8 +1,14 @@
 import http from 'http'
-export class HttpResponse {
-  private response: http.ServerResponse
 
-  public constructor(response: http.ServerResponse) {
+export interface ResponseMessage {
+  write(content: string)
+  end()
+}
+
+export class HttpResponse {
+  private response: ResponseMessage
+
+  public constructor(response: ResponseMessage) {
     this.response = response
   }
 

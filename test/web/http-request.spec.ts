@@ -1,6 +1,5 @@
-import http from 'http'
 import { expect } from 'chai'
-import { HttpRequest } from '../../src/web/http-request'
+import { HttpRequest, RequestMessage } from '../../src/web/http-request'
 
 describe('/web/http-request.ts', function() {
   it('存在 Class HttpRequest', function() {
@@ -8,7 +7,7 @@ describe('/web/http-request.ts', function() {
   })
 
   it('HttpRequest 构造时传入参数不报错', function() {
-    let request = new http.IncomingMessage(null)
+    let request = new FakeRequestMessage()
     expect(() => {
       // tslint:disable-next-line:no-unused-expression
       new HttpRequest(request)
@@ -16,7 +15,7 @@ describe('/web/http-request.ts', function() {
   })
 
   it('HttpRequest 构造时传入空的 REQUEST 参数不报错', function() {
-    let request: http.IncomingMessage
+    let request: FakeRequestMessage
     expect(() => {
       // tslint:disable-next-line:no-unused-expression
       new HttpRequest(request)
@@ -69,6 +68,8 @@ describe('/web/http-request.ts', function() {
     expect(request.Path).to.equal('/foo/bar')
   })
 })
+
+class FakeRequestMessage implements RequestMessage {}
 
 class FakeHttpRequest extends HttpRequest {
   public constructor() {

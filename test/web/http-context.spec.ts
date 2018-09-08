@@ -1,6 +1,7 @@
-import http from 'http'
 import { expect } from 'chai'
 import { HttpContext } from '../../src/web/http-context'
+import { RequestMessage } from '../../src/web/http-request'
+import { ResponseMessage } from '../../src/web/http-response'
 
 describe('/web/http-context.ts', function() {
   it('存在 Class EventHandler', function() {
@@ -8,8 +9,8 @@ describe('/web/http-context.ts', function() {
   })
 
   it('HttpContext 构造时传入参数不报错', function() {
-    let request = new http.IncomingMessage(null)
-    let response = new http.ServerResponse(request)
+    let request = new FakeRequestMessage()
+    let response = new FakeResponseMessage()
     expect(() => {
       // tslint:disable-next-line:no-unused-expression
       new HttpContext({ request, response })
@@ -17,8 +18,8 @@ describe('/web/http-context.ts', function() {
   })
 
   it('HttpContext 构造时传入空的 REQUEST RESPONSE 参数不报错', function() {
-    let request: http.IncomingMessage
-    let response: http.ServerResponse
+    let request = new FakeRequestMessage()
+    let response = new FakeResponseMessage()
     expect(() => {
       // tslint:disable-next-line:no-unused-expression
       new HttpContext({ request, response })
@@ -40,8 +41,8 @@ describe('/web/http-context.ts', function() {
   })
 
   it('HttpContext 构造成功时 Items 属性不为空', function() {
-    let request: http.IncomingMessage
-    let response: http.ServerResponse
+    let request = new FakeRequestMessage()
+    let response = new FakeResponseMessage()
     let context = new HttpContext({ request, response })
     // tslint:disable-next-line:no-unused-expression
     expect(context.Items).not.null
@@ -50,8 +51,8 @@ describe('/web/http-context.ts', function() {
   })
 
   it('HttpContext 构造成功时 Request 属性不为空', function() {
-    let request: http.IncomingMessage
-    let response: http.ServerResponse
+    let request = new FakeRequestMessage()
+    let response = new FakeResponseMessage()
     let context = new HttpContext({ request, response })
     // tslint:disable-next-line:no-unused-expression
     expect(context.Request).not.null
@@ -60,8 +61,8 @@ describe('/web/http-context.ts', function() {
   })
 
   it('HttpContext 构造成功时 Response 属性不为空', function() {
-    let request: http.IncomingMessage
-    let response: http.ServerResponse
+    let request = new FakeRequestMessage()
+    let response = new FakeResponseMessage()
     let context = new HttpContext({ request, response })
     // tslint:disable-next-line:no-unused-expression
     expect(context.Response).not.null
@@ -69,3 +70,14 @@ describe('/web/http-context.ts', function() {
     expect(context.Response).not.undefined
   })
 })
+
+class FakeRequestMessage implements RequestMessage {}
+
+class FakeResponseMessage implements ResponseMessage {
+  write(content: string) {
+    throw new Error('Method not implemented.')
+  }
+  end() {
+    throw new Error('Method not implemented.')
+  }
+}

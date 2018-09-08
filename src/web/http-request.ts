@@ -1,9 +1,15 @@
 import http from 'http'
+
+export interface RequestMessage {
+  readonly url?: string
+  readonly method?: string
+}
+
 export class HttpRequest {
-  private request: http.IncomingMessage
+  private request: RequestMessage
   private params: any
 
-  public constructor(request: http.IncomingMessage) {
+  public constructor(request: RequestMessage) {
     this.request = request
   }
 
