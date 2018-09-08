@@ -1,6 +1,6 @@
 import { expect } from 'chai'
-import { RouteCollection } from '../../../src/web/routing/route-collection'
 import { IRouter } from '../../../src/web/routing/router'
+import { RouteCollection } from '../../../src/web/routing/route-collection'
 import { RouteContext } from '../../../src/web/routing/route-context'
 
 describe('/web/routing/route-collection.ts', function() {
