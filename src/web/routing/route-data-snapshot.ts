@@ -13,8 +13,11 @@ export class RouteDataSnapshot {
     routers: Array<IRouter>,
     values: Map<string, any>
   ) {
+    if (!routeData) {
+      throw new Error('路由数据不可为空')
+    }
     this.routeData = routeData
-    this.routers = routers.map(x => x) || []
+    this.routers = (routers || []).map(x => x)
     if (dataTokens) {
       for (let [key, value] of Array.from(dataTokens)) {
         this.dataTokens.set(key, value)
