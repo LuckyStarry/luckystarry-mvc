@@ -92,15 +92,6 @@ describe('/service-container.ts', function() {
   })
 })
 
-class FakePool implements ClassPool {
-  indexOf(type: Function): number {
-    return -1
-  }
-  push(type: Function): void {
-    return
-  }
-}
-
 class FakeServiceContainer implements IServiceContainer {
   AddService<T>(type: Function) {
     return
