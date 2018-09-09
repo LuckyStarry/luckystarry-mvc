@@ -3,21 +3,17 @@ import { IRouter } from './router'
 import { RouteDataSnapshot } from './route-data-snapshot'
 
 export class RouteData {
-  private routeHandler: IRouteHandler
+  private routeHandler: IRouteHandler = null
   private values: Map<string, any> = new Map<string, any>()
   private dataTokens: Map<string, any> = new Map<string, any>()
   private routers: Array<IRouter> = []
 
   public get Controller(): string {
-    if (this.Values) {
-      return this.Values.get('controller')
-    }
+    return this.Values.get('controller') || ''
   }
 
   public get ActionName(): string {
-    if (this.Values) {
-      return this.Values.get('action')
-    }
+    return this.Values.get('action') || ''
   }
 
   public set RouteHandler(value: IRouteHandler) {
