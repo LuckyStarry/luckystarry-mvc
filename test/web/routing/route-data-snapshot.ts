@@ -1,10 +1,6 @@
 import { expect } from 'chai'
 import { IRouter } from '../../../src/web/routing/router'
-import { RouteCollection } from '../../../src/web/routing/route-collection'
 import { RouteContext } from '../../../src/web/routing/route-context'
-import { HttpContext } from '../../../src/web/http-context'
-import { RequestMessage } from '../../../src/web/http-request'
-import { ResponseMessage } from '../../../src/web/http-response'
 import { RouteData } from '../../../src/web/routing/route-data'
 import { RouteDataSnapshot } from '../../../src/web/routing/route-data-snapshot'
 
@@ -103,21 +99,65 @@ describe('/web/routing/route-data-snapshot.ts', function() {
       new RouteDataSnapshot(routeData, dataTokens, routers, undefined)
     }).not.throw()
   })
+
+  it('RouteDataSnapshot.Restore 功能正常', function() {
+    let routeData = new RouteData()
+    routeData.DataTokens = new Map<string, any>()
+    routeData.DataTokens.set('dt1', 1)
+    routeData.DataTokens.set('dt2', '2')
+    routeData.DataTokens.set('dt3', 3.0)
+    routeData.Routers = new Array<IRouter>()
+    routeData.Routers.push(new FakeRouter('123'))
+    routeData.Routers.push(new FakeRouter('456'))
+    routeData.Routers.push(new FakeRouter('789'))
+    routeData.Values = new Map<string, any>()
+    routeData.Values.set('v_1', 11)
+    routeData.Values.set('v_2', '22')
+    routeData.Values.set('v_3', 3.3)
+
+    let snapshot = new RouteDataSnapshot(
+      routeData,
+      routeData.DataTokens,
+      routeData.Routers,
+      routeData.Values
+    )
+
+    routeData.DataTokens.set('dt4', new Date())
+    routeData.Routers.push(new FakeRouter(new Date().getTime().toString()))
+    routeData.Values.set('v_4', new Date())
+
+    expect(routeData.DataTokens.size).is.equal(4)
+    expect(routeData.Routers.length).is.equal(4)
+    expect(routeData.Values.size).is.equal(4)
+
+    snapshot.Restore()
+
+    expect(routeData.DataTokens.size).is.equal(3)
+    expect(routeData.Routers.length).is.equal(3)
+    expect(routeData.Values.size).is.equal(3)
+
+    expect(routeData.DataTokens.get('dt1')).is.equal(1)
+    expect(routeData.DataTokens.get('dt2')).is.equal('2')
+    expect(routeData.DataTokens.get('dt3')).is.equal(3.0)
+
+    expect((routeData.Routers[0] as FakeRouter).fakeId).is.equal('123')
+    expect((routeData.Routers[1] as FakeRouter).fakeId).is.equal('456')
+    expect((routeData.Routers[2] as FakeRouter).fakeId).is.equal('789')
+
+    expect(routeData.Values.get('v_1')).is.equal(11)
+    expect(routeData.Values.get('v_2')).is.equal('22')
+    expect(routeData.Values.get('v_3')).is.equal(3.3)
+  })
 })
 
 class FakeRouter implements IRouter {
+  public constructor(id: string) {
+    this.fakeId = id
+  }
+
   public RouteAsync(context: RouteContext): Promise<void> {
     throw new Error('Method not implemented.')
   }
-}
 
-class FakeRequestMessage implements RequestMessage {}
-
-class FakeResponseMessage implements ResponseMessage {
-  write(content: string) {
-    throw new Error('Method not implemented.')
-  }
-  end() {
-    throw new Error('Method not implemented.')
-  }
+  public fakeId: string
 }
