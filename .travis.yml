@@ -19,18 +19,6 @@ jobs:
       after_success:
         - npm run coverage
 
-    - stage: master
-      if: branch = master
-      script:
-        - echo "NPM Version Started ..."
-        - git config user.name "${U_NAME}"
-        - git config user.email "${U_EMAIL}"
-        - git checkout .
-        - git checkout -b prerelease
-        - npm version prerelease -m "Upgrade to %s"
-        - git push --quiet --tags "https://${GH_TOKEN}@${GH_REF}" prerelease:prerelease
-        - echo "NPM Version Finished."
-
     - stage: tagged-prerelease
       if: tag =~ ^v\d+\.\d+\.\d+-.*$
       deploy:

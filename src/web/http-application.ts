@@ -1,8 +1,8 @@
 import http from 'http'
 import { IHttpModule } from './http-module'
 import { HttpContext } from './http-context'
-import { EventHandler } from './event-handler'
-import { PayloadEventArgs } from './payload-event-args'
+import { EventHandler } from '../event-handler'
+import { PayloadEventArgs } from '../payload-event-args'
 
 export class HttpApplication {
   private server: http.Server
@@ -35,7 +35,15 @@ export class HttpApplication {
   }
 
   public Start(options?: { Port?: number }): void {
-    options = Object.assign({ Port: 3000 }, options)
+    let port = parseInt(process.env.PORT, 10)
+    if (isNaN(port)) {
+      port = 3000
+    } else if (port < 10) {
+      port = 3000
+    } else if (port > 65535) {
+      port = 3000
+    }
+    options = Object.assign({ Port: port }, options)
     this.Application_Start()
     this.server.on('error', err => this.onError(err, options.Port))
     this.server.on('listening', () => this.onListening())
