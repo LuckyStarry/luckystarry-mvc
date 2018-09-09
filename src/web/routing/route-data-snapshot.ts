@@ -1,23 +1,24 @@
 import { RouteData } from './route-data'
 import { IRouter } from './router'
+import { IList, List } from '../../list'
 
 export class RouteDataSnapshot {
   private routeData: RouteData
   private dataTokens: Map<string, any> = new Map<string, any>()
-  private routers: IRouter[] = []
+  private routers: IList<IRouter> = new List<IRouter>()
   private values: Map<string, any> = new Map<string, any>()
 
   public constructor(
     routeData: RouteData,
     dataTokens: Map<string, any>,
-    routers: Array<IRouter>,
+    routers: IList<IRouter>,
     values: Map<string, any>
   ) {
     if (!routeData) {
       throw new Error('路由数据不可为空')
     }
     this.routeData = routeData
-    this.routers = (routers || []).map(x => x)
+    this.routers = new List<IRouter>(routers)
     if (dataTokens) {
       for (let [key, value] of Array.from(dataTokens)) {
         this.dataTokens.set(key, value)

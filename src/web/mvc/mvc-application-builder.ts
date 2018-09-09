@@ -1,15 +1,10 @@
-import http from 'http'
 import { IApplicationBuilder } from '../../application-builder'
-import {
-  RouteDictionary,
-  RouteTable,
-  RequestContext,
-  IRouteBuilder,
-  RouteBuilder
-} from '../routing'
+import { IRouteBuilder, RouteBuilder } from '../routing'
 import { HttpContext } from '../http-context'
 import { IServiceProvider } from '../../service-provider'
 import { RequestDelegate } from '../../request-delegate'
+import { RouteBuilderExtensions } from '../routing/route-builder-extensions'
+import { MvcRouteHandler } from './mvc-route-handler'
 
 export abstract class MvcApplicationBuilder implements IApplicationBuilder {
   private app: IApplicationBuilder
@@ -35,15 +30,35 @@ export abstract class MvcApplicationBuilder implements IApplicationBuilder {
 
   public static UseMvc(
     app: IApplicationBuilder,
-    configureRoutes?: IRouteBuilder
+    configureRoutes?: (builder: IRouteBuilder) => void
   ): MvcApplicationBuilder {
-    return new DefaultMvcApplicationBuilder(app, configureRoutes)
+    if (!configureRoutes) {
+      // tslint:disable-next-line:no-empty
+      configureRoutes = routes => {}
+    }
+    let routes = new RouteBuilder(app)
+    routes.DefaultHandler = app.ApplicationServices.GetService(MvcRouteHandler)
+
+    configureRoutes(routes)
+
+    routes.Routes.Insert(
+      0,
+      AttributeRouting.CreateAttributeMegaRoute(app.ApplicationServices)
+    )
+
+    return app.UseRouter(routes.Build())
   }
 
   public static UseMvcWithDefaultRoute(
     app: IApplicationBuilder
   ): MvcApplicationBuilder {
-    return MvcApplicationBuilder.UseMvc(app, new RouteBuilder(app))
+    return MvcApplicationBuilder.UseMvc(app, routes => {
+      RouteBuilderExtensions.MapRoute(
+        routes,
+        'default',
+        '{controller=Home}/{action=Index}/{id?}'
+      )
+    })
   }
 
   private process(context: HttpContext): Promise<void> {

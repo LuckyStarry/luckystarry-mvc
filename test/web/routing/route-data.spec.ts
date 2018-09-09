@@ -82,13 +82,13 @@ describe('/web/routing/route-data.ts', function() {
 
   it('RouteDataSnapshot.PushState 参数 router 可正常添加到 Routers', function() {
     let routeData = new RouteData()
-    routeData.Routers.push(new FakeRouter('1'))
-    routeData.Routers.push(new FakeRouter('2'))
-    routeData.Routers.push(new FakeRouter('3'))
-    expect(routeData.Routers.length).is.equal(3)
+    routeData.Routers.Add(new FakeRouter('1'))
+    routeData.Routers.Add(new FakeRouter('2'))
+    routeData.Routers.Add(new FakeRouter('3'))
+    expect(routeData.Routers.Count).is.equal(3)
     routeData.PushState(new FakeRouter('4'), null, null)
-    expect(routeData.Routers.length).is.equal(4)
-    expect((routeData.Routers[3] as FakeRouter).fakeId).is.equal('4')
+    expect(routeData.Routers.Count).is.equal(4)
+    expect((routeData.Routers.Get(3) as FakeRouter).fakeId).is.equal('4')
   })
 
   it('RouteDataSnapshot.PushState 参数 router 可为 null', function() {

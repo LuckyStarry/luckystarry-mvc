@@ -2,11 +2,12 @@ import { IServiceProvider } from '../../service-provider'
 import { IApplicationBuilder } from '../../application-builder'
 import { IRouter } from './router'
 import { RouteCollection } from './route-collection'
+import { IList, List } from '../../list'
 
 export interface IRouteBuilder {
   readonly ApplicationBuilder: IApplicationBuilder
   readonly ServiceProvider: IServiceProvider
-  readonly Routes: Array<IRouter>
+  readonly Routes: IList<IRouter>
   DefaultHandler: IRouter
 
   Build(): IRouter
@@ -16,7 +17,7 @@ export class RouteBuilder implements IRouteBuilder {
   private applicationBuilder: IApplicationBuilder
   private serviceProvider: IServiceProvider
   private defaultHandler: IRouter
-  private routes: IRouter[]
+  private routes: IList<IRouter>
 
   public constructor(
     applicationBuilder: IApplicationBuilder,
@@ -25,7 +26,7 @@ export class RouteBuilder implements IRouteBuilder {
     this.applicationBuilder = applicationBuilder
     this.serviceProvider = applicationBuilder.ApplicationServices
     this.defaultHandler = defaultHandler
-    this.routes = []
+    this.routes = new List<IRouter>()
   }
 
   public Build(): IRouter {
@@ -44,7 +45,7 @@ export class RouteBuilder implements IRouteBuilder {
     return this.serviceProvider
   }
 
-  public get Routes(): Array<IRouter> {
+  public get Routes(): IList<IRouter> {
     return this.routes
   }
 
