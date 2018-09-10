@@ -1,11 +1,7 @@
 import { expect } from 'chai'
 import { Injectable } from '../src/injectable'
 import { ServiceCollection } from '../src/service-collection'
-import {
-  ServiceContainer,
-  ClassPool,
-  IServiceContainer
-} from '../src/service-container'
+import { ServiceContainer, IServiceContainer } from '../src/service-container'
 
 describe('/service-collection.ts', function() {
   it('存在 Class ServiceCollection', function() {
