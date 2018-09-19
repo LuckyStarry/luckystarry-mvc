@@ -132,28 +132,28 @@ describe('/application-builder.ts', function() {
     let serial = 1
     builder.Use(next => {
       return async context => {
-        context.Items.set('MiddleWare-1', serial++)
+        context.Items.Set('MiddleWare-1', serial++)
         return await next(context)
       }
     })
     builder.Use(next => {
       return async context => {
-        context.Items.set('MiddleWare-2', serial++)
+        context.Items.Set('MiddleWare-2', serial++)
         return await next(context)
       }
     })
     builder.Use(next => {
       return async context => {
-        context.Items.set('MiddleWare-3', serial++)
+        context.Items.Set('MiddleWare-3', serial++)
         return await next(context)
       }
     })
     let middleware = builder.Build()
     let context = new FakeHttpContext()
     middleware(context).then(() => {
-      expect(context.Items.get('MiddleWare-1')).to.equal(1)
-      expect(context.Items.get('MiddleWare-2')).to.equal(2)
-      expect(context.Items.get('MiddleWare-3')).to.equal(3)
+      expect(context.Items.Get('MiddleWare-1')).to.equal(1)
+      expect(context.Items.Get('MiddleWare-2')).to.equal(2)
+      expect(context.Items.Get('MiddleWare-3')).to.equal(3)
       done()
     })
   })

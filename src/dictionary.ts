@@ -1,11 +1,12 @@
-export interface IDictionary<TKey, TValue> {
-  Add(key: TKey, value: TValue): void
-  Get(key: TKey): TValue
-  ContainsKey(key: TKey): boolean
-  ContainsValue(value: TValue): boolean
-  Remove(key: TKey): boolean
-  readonly Count: number
-  [Symbol.iterator](): IterableIterator<[TKey, TValue]>
+export abstract class IDictionary<TKey, TValue> {
+  public abstract Add(key: TKey, value: TValue): void
+  public abstract Set(key: TKey, value: TValue): void
+  public abstract Get(key: TKey): TValue
+  public abstract ContainsKey(key: TKey): boolean
+  public abstract ContainsValue(value: TValue): boolean
+  public abstract Remove(key: TKey): boolean
+  public abstract get Count(): number
+  public abstract [Symbol.iterator](): IterableIterator<[TKey, TValue]>
 }
 
 export class Dictionary<TKey, TValue> implements IDictionary<TKey, TValue> {
@@ -22,6 +23,10 @@ export class Dictionary<TKey, TValue> implements IDictionary<TKey, TValue> {
   }
 
   public Add(key: TKey, value: TValue) {
+    this.Set(key, value)
+  }
+
+  public Set(key: TKey, value: TValue) {
     this.items.set(key, value)
   }
 

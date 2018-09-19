@@ -1,7 +1,11 @@
-import { IServiceCollection, ServiceCollection } from './service-collection'
+import ioc, {
+  Injectable,
+  IServiceCollection,
+  ServiceCollection
+} from 'luckystarry-ioc'
 
-export interface IServiceProvider {
-  GetService<T>(type: { new (...args: Array<any>): T }): T
+export abstract class IServiceProvider {
+  public abstract GetService<T>(type: { new (...args: Array<any>): T }): T
 }
 
 export class ServiceProvider implements IServiceProvider {

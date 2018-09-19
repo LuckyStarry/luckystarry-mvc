@@ -14,7 +14,7 @@ export class RouterMiddleware {
 
   public async Invoke(httpContext: HttpContext): Promise<void> {
     let context = new RouteContext(httpContext)
-    context.RouteData.Routers.push(this.router)
+    context.RouteData.Routers.Add(this.router)
 
     await this.router.RouteAsync(context)
 

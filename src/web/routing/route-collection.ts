@@ -1,8 +1,8 @@
 import { IRouter } from './router'
 import { RouteContext } from './route-context'
 
-export interface IRouteCollection extends IRouter {
-  Add(router: IRouter): void
+export abstract class IRouteCollection extends IRouter {
+  public abstract Add(router: IRouter): void
 }
 
 export class RouteCollection implements IRouteCollection {
@@ -19,7 +19,7 @@ export class RouteCollection implements IRouteCollection {
     let snapshot = context.RouteData.PushState(null, null, null)
     for (let i = 0; i < this.routes.length; i++) {
       let route = this.routes[i]
-      context.RouteData.Routers.push(route)
+      context.RouteData.Routers.Add(route)
 
       try {
         await route.RouteAsync(context)

@@ -1,5 +1,5 @@
 import { RouteContext } from './route-context'
 
-export interface IRouter {
-  RouteAsync(context: RouteContext): Promise<void>
+export abstract class IRouter {
+  public abstract RouteAsync(context: RouteContext): Promise<void>
 }

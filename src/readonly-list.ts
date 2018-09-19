@@ -1,6 +1,6 @@
-export interface IReadOnlyList<T> {
-  readonly Count: number
-  [Symbol.iterator]()
+export abstract class IReadOnlyList<T> {
+  public abstract get Count(): number
+  public abstract [Symbol.iterator](): IterableIterator<T>
 }
 
 export class ReadOnlyList<T> implements IReadOnlyList<T> {
@@ -13,7 +13,7 @@ export class ReadOnlyList<T> implements IReadOnlyList<T> {
     return this.items.length
   }
 
-  public *[Symbol.iterator]() {
+  public *[Symbol.iterator](): IterableIterator<T> {
     for (let item of this.items) {
       yield item
     }

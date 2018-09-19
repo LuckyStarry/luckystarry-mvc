@@ -2,17 +2,18 @@ import { RequestContext } from '../routing'
 import { IController, ControllerCollection } from './controller'
 import { ServiceContainer } from '../../service-container'
 
-export interface IControllerFactory {
-  CreateController(
+export abstract class IControllerFactory {
+  public abstract CreateController(
     requestContext: RequestContext,
     controllerName: string
   ): IController
 }
 
-export class DefaultControllerFactory implements IControllerFactory {
+export class DefaultControllerFactory extends IControllerFactory {
   private controllerCollection: ControllerCollection
 
   public constructor(controllerCollection: ControllerCollection) {
+    super()
     this.controllerCollection = controllerCollection
   }
 

@@ -4,13 +4,14 @@ import { IRouter } from './router'
 import { RouteCollection } from './route-collection'
 import { IList, List } from '../../list'
 
-export interface IRouteBuilder {
-  readonly ApplicationBuilder: IApplicationBuilder
-  readonly ServiceProvider: IServiceProvider
-  readonly Routes: IList<IRouter>
-  DefaultHandler: IRouter
+export abstract class IRouteBuilder {
+  public abstract get ApplicationBuilder(): IApplicationBuilder
+  public abstract get ServiceProvider(): IServiceProvider
+  public abstract get Routes(): IList<IRouter>
+  public abstract set DefaultHandler(value: IRouter)
+  public abstract get DefaultHandler(): IRouter
 
-  Build(): IRouter
+  public abstract Build(): IRouter
 }
 
 export class RouteBuilder implements IRouteBuilder {

@@ -1,11 +1,13 @@
+import { ServiceCollection } from 'luckystarry-ioc'
 import { IWebHost, LuckyStarryWebHost } from './web-host'
-import { IServiceCollection, ServiceCollection } from './service-collection'
 import { ApplicationBuilder } from './application-builder'
 import { isFunction } from './utils'
 
-export interface IWebHostBuilder {
-  UseStartup<T>(startUp: { new (...args: Array<any>): T }): IWebHostBuilder
-  Build(): IWebHost
+export abstract class IWebHostBuilder {
+  public abstract UseStartup<T>(startUp: {
+    new (...args: Array<any>): T
+  }): IWebHostBuilder
+  public abstract Build(): IWebHost
 }
 
 export class WebHostBuilder implements IWebHostBuilder {

@@ -1,12 +1,6 @@
 import { expect } from 'chai'
-import { Injectable } from '../src/injectable'
+import { Injectable, ServiceCollection } from 'luckystarry-ioc'
 import { ServiceProvider } from '../src/service-provider'
-import { ServiceCollection } from '../src/service-collection'
-import {
-  ServiceContainer,
-  ClassPool,
-  IServiceContainer
-} from '../src/service-container'
 
 describe('/service-provider.ts', function() {
   it('存在 Class ServiceProvider', function() {
@@ -35,25 +29,13 @@ describe('/service-provider.ts', function() {
 
   it('ServiceCollection.GetService 有参构造类未注册依赖类时获取报错', function() {
     let pool = new Array<Function>(TestBiz)
-    let container = new ServiceContainer(pool)
-    let collection = new ServiceCollection(container)
+    let collection = new ServiceCollection(pool)
     let provider = new ServiceProvider(collection)
     expect(() => {
       provider.GetService(TestBiz)
     }).to.throw('没有被注册')
   })
 })
-
-class FakeServiceContainer implements IServiceContainer {
-  AddService<T>(type: Function) {
-    return
-  }
-  GetService<T>(constructorFunction: new (...args: any[]) => T): T {
-    return
-  }
-}
-
-const fakeContainer = new FakeServiceContainer()
 
 @Injectable()
 class TestService {
@@ -74,7 +56,7 @@ class TestBiz {
   }
 }
 
-@Injectable(fakeContainer)
+@Injectable()
 class TestServiceSelfRel {
   // tslint:disable-next-line:no-empty
   constructor(obj: TestServiceSelfRel) {}

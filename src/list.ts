@@ -1,11 +1,11 @@
-export interface IList<T> {
-  Add(item: T): void
-  Get(index: number): T
-  Insert(index: number, item: T): void
-  Contains(items: T): boolean
-  Remove(items: T): boolean
-  readonly Count: number
-  [Symbol.iterator](): IterableIterator<T>
+export abstract class IList<T> {
+  public abstract Add(item: T): void
+  public abstract Get(index: number): T
+  public abstract Insert(index: number, item: T): void
+  public abstract Contains(items: T): boolean
+  public abstract Remove(items: T): boolean
+  public abstract get Count(): number
+  public abstract [Symbol.iterator](): IterableIterator<T>
 }
 
 export class List<T> implements IList<T> {
