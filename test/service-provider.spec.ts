@@ -22,13 +22,13 @@ describe('/service-provider.ts', function() {
     expect(biz.Service instanceof TestService).is.true
   })
 
-  it('ServiceCollection.GetService 有参构造类未注册依赖类时获取报�, function() {
+  it('ServiceCollection.GetService 有参构造类未注册依赖类时获取报错', function() {
     let pool = new Array<Function>(TestBiz)
     let collection = new ServiceCollection(pool)
     let provider = new ServiceProvider(collection)
     expect(() => {
       provider.GetService(TestBiz)
-    }).to.throw('没有被注�)
+    }).to.throw('没有被注册')
   })
 })
 

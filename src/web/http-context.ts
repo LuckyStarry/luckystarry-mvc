@@ -1,7 +1,7 @@
+import { IDictionary, Dictionary } from 'luckystarry-collections'
 import { HttpRequest, RequestMessage } from './http-request'
 import { HttpResponse, ResponseMessage } from './http-response'
 import { IHttpHandler } from './http-handler'
-import { IDictionary, Dictionary } from '../dictionary'
 export class HttpContext {
   private request: HttpRequest
   private response: HttpResponse
