@@ -1,7 +1,7 @@
 {
   "name": "luckystarry-mvc",
   "version": "0.0.4-alpha.8",
-  "description": "一个轻量的类似于 ASP.NET MVC 的 WebApi 服务",
+  "description": "一个轻量的类似�ASP.NET MVC �WebApi 服务",
   "keywords": [
     "mvc"
   ],
@@ -11,7 +11,8 @@
     "pretest": "del-cli .nyc_output coverage -f",
     "test": "nyc mocha",
     "testonly": "mocha",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "dev": "gulp dev"
   },
   "nyc": {
     "extension": [
@@ -43,6 +44,7 @@
     "coveralls": "^3.0.2",
     "cross-env": "^5.2.0",
     "del-cli": "^1.1.0",
+    "gulp": "^3.9.1",
     "mocha": "^5.2.0",
     "nyc": "^13.0.1",
     "should": "^13.2.3",

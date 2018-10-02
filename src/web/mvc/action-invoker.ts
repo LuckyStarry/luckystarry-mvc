@@ -1,3 +1,3 @@
-export interface IActionInvoker {
-  InvokeAsync(): Promise<void>
+export abstract class IActionInvoker {
+  public abstract InvokeAsync(): Promise<void>
 }

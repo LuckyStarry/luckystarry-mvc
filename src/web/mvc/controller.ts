@@ -1,6 +1,5 @@
 import { HttpContext } from '../http-context'
 import { RequestContext, RouteConfig } from '../routing'
-import { ControllerActionInvoker } from './controller-action-invoker'
 import { ControllerContext } from './controller-context'
 
 export interface IController {

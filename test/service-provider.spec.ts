@@ -1,7 +1,7 @@
 /* tslint:disable */
 import { expect } from 'chai'
-import { ServiceProvider } from '../src/service-provider'
 import { Injectable, ServiceCollection } from 'luckystarry-ioc'
+import { ServiceProvider } from '../src/service-provider'
 
 describe('/service-provider.ts', function() {
   it('存在 Class ServiceProvider', function() {
@@ -22,13 +22,13 @@ describe('/service-provider.ts', function() {
     expect(biz.Service instanceof TestService).is.true
   })
 
-  it('ServiceCollection.GetService 有参构造类未注册依赖类时获取报错', function() {
+  it('ServiceCollection.GetService 有参构造类未注册依赖类时获取报�, function() {
     let pool = new Array<Function>(TestBiz)
     let collection = new ServiceCollection(pool)
     let provider = new ServiceProvider(collection)
     expect(() => {
       provider.GetService(TestBiz)
-    }).to.throw('没有被注册')
+    }).to.throw('没有被注�)
   })
 })
 

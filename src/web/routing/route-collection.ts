@@ -1,8 +1,8 @@
 import { IRouter } from './router'
 import { RouteContext } from './route-context'
 
-export interface IRouteCollection extends IRouter {
-  Add(router: IRouter): void
+export abstract class IRouteCollection extends IRouter {
+  public abstract Add(router: IRouter): void
 }
 
 export class RouteCollection implements IRouteCollection {

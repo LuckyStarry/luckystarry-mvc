@@ -4,8 +4,8 @@ import { IApplicationBuilder } from './application-builder'
 import { RequestDelegate } from './request-delegate'
 import { HttpContext } from './web'
 
-export interface IWebHost {
-  Start()
+export abstract class IWebHost {
+  public abstract Start()
 }
 
 export class WebHost {

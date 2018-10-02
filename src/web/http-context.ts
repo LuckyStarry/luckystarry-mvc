@@ -1,12 +1,12 @@
-import http from 'http'
 import { HttpRequest, RequestMessage } from './http-request'
 import { HttpResponse, ResponseMessage } from './http-response'
 import { IHttpHandler } from './http-handler'
+import { IDictionary, Dictionary } from '../dictionary'
 export class HttpContext {
   private request: HttpRequest
   private response: HttpResponse
   private handler: IHttpHandler
-  public items: Map<string, any>
+  public items: IDictionary<string, any>
 
   public constructor(payload: {
     request: RequestMessage
@@ -17,7 +17,7 @@ export class HttpContext {
     }
     this.request = new HttpRequest(payload.request)
     this.response = new HttpResponse(payload.response)
-    this.items = new Map<string, any>()
+    this.items = new Dictionary<string, any>()
   }
 
   public get Request(): HttpRequest {
@@ -36,7 +36,7 @@ export class HttpContext {
     this.handler = handler
   }
 
-  public get Items(): Map<string, any> {
+  public get Items(): IDictionary<string, any> {
     return this.items
   }
 }

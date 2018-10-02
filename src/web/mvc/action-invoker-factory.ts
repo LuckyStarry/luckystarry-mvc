@@ -1,6 +1,6 @@
 import { IActionInvoker } from './action-invoker'
 import { ActionContext } from './action-context'
 
-export interface IActionInvokerFactory {
-  CreateInvoker(actionContext: ActionContext): IActionInvoker
+export abstract class IActionInvokerFactory {
+  public abstract CreateInvoker(actionContext: ActionContext): IActionInvoker
 }

@@ -1,14 +1,15 @@
 import { IServiceProvider } from './service-provider'
 import { RequestDelegate } from './request-delegate'
 
-export interface IApplicationBuilder {
-  ApplicationServices: IServiceProvider
+export abstract class IApplicationBuilder {
+  public abstract set ApplicationServices(value: IServiceProvider)
+  public abstract get ApplicationServices(): IServiceProvider
 
-  Use(
+  public abstract Use(
     middleware: (request: RequestDelegate) => RequestDelegate
   ): IApplicationBuilder
 
-  Build(): RequestDelegate
+  public abstract Build(): RequestDelegate
 }
 
 export class ApplicationBuilder implements IApplicationBuilder {
