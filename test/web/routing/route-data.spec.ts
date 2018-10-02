@@ -1,3 +1,4 @@
+/* tslint:disable */
 import { expect } from 'chai'
 import { IRouter } from '../../../src/web/routing/router'
 import { RouteContext } from '../../../src/web/routing/route-context'
@@ -10,39 +11,30 @@ describe('/web/routing/route-data.ts', function() {
 
   it('RouteDataSnapshot 构造时 RouteHandler = null', function() {
     let routeData = new RouteData()
-    // tslint:disable-next-line:no-unused-expression
     expect(routeData.RouteHandler).is.null
   })
 
   it('RouteDataSnapshot 构造时 Routers 不为空', function() {
     let routeData = new RouteData()
-    // tslint:disable-next-line:no-unused-expression
     expect(routeData.Routers).is.not.null
-    // tslint:disable-next-line:no-unused-expression
     expect(routeData.Routers).is.not.undefined
   })
 
   it('RouteDataSnapshot 构造时 Values 不为空', function() {
     let routeData = new RouteData()
-    // tslint:disable-next-line:no-unused-expression
     expect(routeData.Values).is.not.null
-    // tslint:disable-next-line:no-unused-expression
     expect(routeData.Values).is.not.undefined
   })
 
   it('RouteDataSnapshot 构造时 DataTokens 不为空', function() {
     let routeData = new RouteData()
-    // tslint:disable-next-line:no-unused-expression
     expect(routeData.DataTokens).is.not.null
-    // tslint:disable-next-line:no-unused-expression
     expect(routeData.DataTokens).is.not.undefined
   })
 
   it('RouteDataSnapshot 构造时 Controller 为空字符串', function() {
     let routeData = new RouteData()
-    // tslint:disable-next-line:no-unused-expression
     expect(routeData.Controller).is.not.null
-    // tslint:disable-next-line:no-unused-expression
     expect(routeData.Controller).is.not.undefined
     expect(routeData.Controller).is.equal('')
   })
@@ -61,9 +53,7 @@ describe('/web/routing/route-data.ts', function() {
 
   it('RouteDataSnapshot 构造时 Action 为空字符串', function() {
     let routeData = new RouteData()
-    // tslint:disable-next-line:no-unused-expression
     expect(routeData.ActionName).is.not.null
-    // tslint:disable-next-line:no-unused-expression
     expect(routeData.ActionName).is.not.undefined
     expect(routeData.ActionName).is.equal('')
   })
@@ -85,15 +75,14 @@ describe('/web/routing/route-data.ts', function() {
     routeData.Routers.Add(new FakeRouter('1'))
     routeData.Routers.Add(new FakeRouter('2'))
     routeData.Routers.Add(new FakeRouter('3'))
-    expect(routeData.Routers.Count).is.equal(3)
+    expect(routeData.Routers.Count()).is.equal(3)
     routeData.PushState(new FakeRouter('4'), null, null)
-    expect(routeData.Routers.Count).is.equal(4)
+    expect(routeData.Routers.Count()).is.equal(4)
     expect((routeData.Routers.Get(3) as FakeRouter).fakeId).is.equal('4')
   })
 
   it('RouteDataSnapshot.PushState 参数 router 可为 null', function() {
     let routeData = new RouteData()
-    // tslint:disable-next-line:no-unused-expression
     expect(() => {
       routeData.PushState(null, new Map<string, any>(), new Map<string, any>())
     }).not.to.throw()
@@ -101,7 +90,6 @@ describe('/web/routing/route-data.ts', function() {
 
   it('RouteDataSnapshot.PushState 参数 router 可为 undefined', function() {
     let routeData = new RouteData()
-    // tslint:disable-next-line:no-unused-expression
     expect(() => {
       routeData.PushState(
         undefined,
@@ -143,7 +131,6 @@ describe('/web/routing/route-data.ts', function() {
 
   it('RouteDataSnapshot.PushState 参数 values 可为 null', function() {
     let routeData = new RouteData()
-    // tslint:disable-next-line:no-unused-expression
     expect(() => {
       routeData.PushState(new FakeRouter(), null, new Map<string, any>())
     }).not.to.throw()
@@ -151,7 +138,6 @@ describe('/web/routing/route-data.ts', function() {
 
   it('RouteDataSnapshot.PushState 参数 values 可为 undefined', function() {
     let routeData = new RouteData()
-    // tslint:disable-next-line:no-unused-expression
     expect(() => {
       routeData.PushState(new FakeRouter(), undefined, new Map<string, any>())
     }).not.to.throw()
@@ -174,7 +160,6 @@ describe('/web/routing/route-data.ts', function() {
 
   it('RouteDataSnapshot.PushState 参数 dataTokens 可为 null', function() {
     let routeData = new RouteData()
-    // tslint:disable-next-line:no-unused-expression
     expect(() => {
       routeData.PushState(new FakeRouter(), new Map<string, any>(), null)
     }).not.to.throw()
@@ -182,7 +167,6 @@ describe('/web/routing/route-data.ts', function() {
 
   it('RouteDataSnapshot.PushState 参数 dataTokens 可为 undefined', function() {
     let routeData = new RouteData()
-    // tslint:disable-next-line:no-unused-expression
     expect(() => {
       routeData.PushState(new FakeRouter(), new Map<string, any>(), undefined)
     }).not.to.throw()

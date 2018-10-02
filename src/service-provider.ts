@@ -1,4 +1,4 @@
-import { IServiceCollection, ServiceCollection } from './service-collection'
+import { IServiceCollection, ServiceCollection } from 'luckystarry-ioc'
 
 export interface IServiceProvider {
   GetService<T>(type: { new (...args: Array<any>): T }): T

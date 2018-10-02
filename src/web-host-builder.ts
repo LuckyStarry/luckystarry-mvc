@@ -1,5 +1,5 @@
 import { IWebHost, LuckyStarryWebHost } from './web-host'
-import { IServiceCollection, ServiceCollection } from './service-collection'
+import { ServiceCollection } from 'luckystarry-ioc'
 import { ApplicationBuilder } from './application-builder'
 import { isFunction } from './utils'
 

@@ -2,7 +2,7 @@ import { IServiceProvider } from '../../service-provider'
 import { IApplicationBuilder } from '../../application-builder'
 import { IRouter } from './router'
 import { RouteCollection } from './route-collection'
-import { IList, List } from '../../list'
+import { IList, List } from 'luckystarry-collections'
 
 export interface IRouteBuilder {
   readonly ApplicationBuilder: IApplicationBuilder

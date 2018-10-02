@@ -1,3 +1,4 @@
+/* tslint:disable */
 import { expect } from 'chai'
 import { PayloadEventArgs } from '../src/payload-event-args'
 
@@ -8,17 +9,13 @@ describe('/payload-event-args.ts', function() {
 
   it('PayloadEventArgs 不使用参数创建时 Payload 为 undefined 不为 null', function() {
     let e = new PayloadEventArgs()
-    // tslint:disable-next-line:no-unused-expression
     expect(e.Payload).not.null
-    // tslint:disable-next-line:no-unused-expression
     expect(e.Payload).is.undefined
   })
 
   it('PayloadEventArgs<Number> 不使用参数创建时 Payload 为 undefined 不为 null', function() {
     let e = new PayloadEventArgs<Number>()
-    // tslint:disable-next-line:no-unused-expression
     expect(e.Payload).not.null
-    // tslint:disable-next-line:no-unused-expression
     expect(e.Payload).is.undefined
   })
 

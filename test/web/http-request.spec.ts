@@ -1,3 +1,4 @@
+/* tslint:disable */
 import { expect } from 'chai'
 import { HttpRequest, RequestMessage } from '../../src/web/http-request'
 
@@ -9,7 +10,6 @@ describe('/web/http-request.ts', function() {
   it('HttpRequest 构造时传入参数不报错', function() {
     let request = new FakeRequestMessage()
     expect(() => {
-      // tslint:disable-next-line:no-unused-expression
       new HttpRequest(request)
     }).not.throw()
   })
@@ -17,18 +17,14 @@ describe('/web/http-request.ts', function() {
   it('HttpRequest 构造时传入空的 REQUEST 参数不报错', function() {
     let request: FakeRequestMessage
     expect(() => {
-      // tslint:disable-next-line:no-unused-expression
       new HttpRequest(request)
     }).not.throw()
   })
 
   it('HttpRequest 构造成功时 Params 属性不为空', function() {
     let request = new HttpRequest(null)
-    // tslint:disable-next-line:no-unused-expression
     expect(request).not.null
-    // tslint:disable-next-line:no-unused-expression
     expect(request).not.undefined
-    // tslint:disable-next-line:no-unused-expression
     expect(request instanceof HttpRequest).is.true
   })
 

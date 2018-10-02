@@ -1,9 +1,10 @@
+/* tslint:disable */
 import { expect } from 'chai'
 import { IRouter } from '../../../src/web/routing/router'
 import { RouteContext } from '../../../src/web/routing/route-context'
 import { RouteData } from '../../../src/web/routing/route-data'
 import { RouteDataSnapshot } from '../../../src/web/routing/route-data-snapshot'
-import { List } from '../../../src/list'
+import { List } from 'luckystarry-collections'
 
 describe('/web/routing/route-data-snapshot.ts', function() {
   it('存在 Class RouteDataSnapshot', function() {
@@ -16,7 +17,6 @@ describe('/web/routing/route-data-snapshot.ts', function() {
     let routers = new List<IRouter>()
     let values = new Map<string, any>()
     expect(() => {
-      // tslint:disable-next-line:no-unused-expression
       new RouteDataSnapshot(routeData, dataTokens, routers, values)
     }).not.throw()
   })
@@ -26,7 +26,6 @@ describe('/web/routing/route-data-snapshot.ts', function() {
     let routers = new List<IRouter>()
     let values = new Map<string, any>()
     expect(() => {
-      // tslint:disable-next-line:no-unused-expression
       new RouteDataSnapshot(null, dataTokens, routers, values)
     }).to.throw('路由数据不可为空')
   })
@@ -36,7 +35,6 @@ describe('/web/routing/route-data-snapshot.ts', function() {
     let routers = new List<IRouter>()
     let values = new Map<string, any>()
     expect(() => {
-      // tslint:disable-next-line:no-unused-expression
       new RouteDataSnapshot(undefined, dataTokens, routers, values)
     }).to.throw('路由数据不可为空')
   })
@@ -46,7 +44,6 @@ describe('/web/routing/route-data-snapshot.ts', function() {
     let routers = new List<IRouter>()
     let values = new Map<string, any>()
     expect(() => {
-      // tslint:disable-next-line:no-unused-expression
       new RouteDataSnapshot(routeData, null, routers, values)
     }).not.throw()
   })
@@ -56,7 +53,6 @@ describe('/web/routing/route-data-snapshot.ts', function() {
     let routers = new List<IRouter>()
     let values = new Map<string, any>()
     expect(() => {
-      // tslint:disable-next-line:no-unused-expression
       new RouteDataSnapshot(routeData, undefined, routers, values)
     }).not.throw()
   })
@@ -66,7 +62,6 @@ describe('/web/routing/route-data-snapshot.ts', function() {
     let dataTokens = new Map<string, any>()
     let values = new Map<string, any>()
     expect(() => {
-      // tslint:disable-next-line:no-unused-expression
       new RouteDataSnapshot(routeData, dataTokens, null, values)
     }).not.throw()
   })
@@ -76,7 +71,6 @@ describe('/web/routing/route-data-snapshot.ts', function() {
     let dataTokens = new Map<string, any>()
     let values = new Map<string, any>()
     expect(() => {
-      // tslint:disable-next-line:no-unused-expression
       new RouteDataSnapshot(routeData, dataTokens, undefined, values)
     }).not.throw()
   })
@@ -86,7 +80,6 @@ describe('/web/routing/route-data-snapshot.ts', function() {
     let dataTokens = new Map<string, any>()
     let routers = new List<IRouter>()
     expect(() => {
-      // tslint:disable-next-line:no-unused-expression
       new RouteDataSnapshot(routeData, dataTokens, routers, null)
     }).not.throw()
   })
@@ -96,7 +89,6 @@ describe('/web/routing/route-data-snapshot.ts', function() {
     let dataTokens = new Map<string, any>()
     let routers = new List<IRouter>()
     expect(() => {
-      // tslint:disable-next-line:no-unused-expression
       new RouteDataSnapshot(routeData, dataTokens, routers, undefined)
     }).not.throw()
   })
@@ -128,13 +120,13 @@ describe('/web/routing/route-data-snapshot.ts', function() {
     routeData.Values.set('v_4', new Date())
 
     expect(routeData.DataTokens.size).is.equal(4)
-    expect(routeData.Routers.Count).is.equal(4)
+    expect(routeData.Routers.Count()).is.equal(4)
     expect(routeData.Values.size).is.equal(4)
 
     snapshot.Restore()
 
     expect(routeData.DataTokens.size).is.equal(3)
-    expect(routeData.Routers.Count).is.equal(3)
+    expect(routeData.Routers.Count()).is.equal(3)
     expect(routeData.Values.size).is.equal(3)
 
     expect(routeData.DataTokens.get('dt1')).is.equal(1)

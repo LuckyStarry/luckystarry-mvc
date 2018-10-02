@@ -1,3 +1,4 @@
+/* tslint:disable */
 import { expect } from 'chai'
 import { HttpApplication } from '../../src/web/http-application'
 

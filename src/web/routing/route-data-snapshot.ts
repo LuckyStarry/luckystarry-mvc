@@ -1,6 +1,6 @@
 import { RouteData } from './route-data'
 import { IRouter } from './router'
-import { IList, List } from '../../list'
+import { IList, List } from 'luckystarry-collections'
 
 export class RouteDataSnapshot {
   private routeData: RouteData

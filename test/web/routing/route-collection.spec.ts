@@ -1,3 +1,4 @@
+/* tslint:disable */
 import { expect } from 'chai'
 import { IRouter } from '../../../src/web/routing/router'
 import { RouteCollection } from '../../../src/web/routing/route-collection'
@@ -55,7 +56,6 @@ describe('/web/routing/route-collection.ts', function() {
 
     routeContext.RouteData = new RouteData()
     collection.RouteAsync(routeContext).then(() => {
-      // tslint:disable-next-line:no-unused-expression
       expect(routeContext.Handler).is.undefined
       done()
     })

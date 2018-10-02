@@ -21,7 +21,7 @@ export class RouteDictionary {
     if (config.options) {
       route.Defaults = config.options.defaults
     }
-    route.RouteHandler = new MvcRouteHandler()
+    // route.RouteHandler = new MvcRouteHandler()
     console.log(
       `注册路由：${config.template} => defaults: ${JSON.stringify(
         config.options && config.options.defaults

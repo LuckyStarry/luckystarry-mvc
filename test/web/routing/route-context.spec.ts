@@ -1,3 +1,4 @@
+/* tslint:disable */
 import { expect } from 'chai'
 import { RouteContext } from '../../../src/web/routing/route-context'
 import { HttpContext } from '../../../src/web/http-context'
@@ -15,21 +16,18 @@ describe('/web/routing/route-context.ts', function() {
     let response = new FakeResponseMessage()
     let httpContext = new HttpContext({ request, response })
     expect(() => {
-      // tslint:disable-next-line:no-unused-expression
       new RouteContext(httpContext)
     }).not.throw()
   })
 
   it('RouteContext 构造时传入 null 报错', function() {
     expect(() => {
-      // tslint:disable-next-line:no-unused-expression
       new RouteContext(null)
     }).to.throw('未传入HTTP上下文')
   })
 
   it('RouteContext 构造时传入 undefined 报错', function() {
     expect(() => {
-      // tslint:disable-next-line:no-unused-expression
       new RouteContext(undefined)
     }).to.throw('未传入HTTP上下文')
   })
@@ -47,7 +45,6 @@ describe('/web/routing/route-context.ts', function() {
     let response = new FakeResponseMessage()
     let httpContext = new HttpContext({ request, response })
     let routeContext = new RouteContext(httpContext)
-    // tslint:disable-next-line:no-empty
     let handler = async context => {}
     routeContext.Handler = handler
     expect(routeContext.Handler).is.equal(handler)
@@ -78,7 +75,6 @@ describe('/web/routing/route-context.ts', function() {
     let response = new FakeResponseMessage()
     let httpContext = new HttpContext({ request, response })
     let routeContext = new RouteContext(httpContext)
-    // tslint:disable-next-line:no-empty
     let routeData = new RouteData()
     routeContext.RouteData = routeData
     expect(routeContext.RouteData).is.equal(routeData)

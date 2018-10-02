@@ -1,3 +1,4 @@
+/* tslint:disable */
 import { expect } from 'chai'
 import { HttpContext } from '../../src/web/http-context'
 import { RequestMessage } from '../../src/web/http-request'
@@ -12,7 +13,6 @@ describe('/web/http-context.ts', function() {
     let request = new FakeRequestMessage()
     let response = new FakeResponseMessage()
     expect(() => {
-      // tslint:disable-next-line:no-unused-expression
       new HttpContext({ request, response })
     }).not.throw()
   })
@@ -21,21 +21,18 @@ describe('/web/http-context.ts', function() {
     let request = new FakeRequestMessage()
     let response = new FakeResponseMessage()
     expect(() => {
-      // tslint:disable-next-line:no-unused-expression
       new HttpContext({ request, response })
     }).not.throw()
   })
 
   it('HttpContext 构造时传入 null 报错', function() {
     expect(() => {
-      // tslint:disable-next-line:no-unused-expression
       new HttpContext(null)
     }).to.throw('没有传入上下文必需的参数')
   })
 
   it('HttpContext 构造时传入 undefined 报错', function() {
     expect(() => {
-      // tslint:disable-next-line:no-unused-expression
       new HttpContext(undefined)
     }).to.throw('没有传入上下文必需的参数')
   })
@@ -44,9 +41,7 @@ describe('/web/http-context.ts', function() {
     let request = new FakeRequestMessage()
     let response = new FakeResponseMessage()
     let context = new HttpContext({ request, response })
-    // tslint:disable-next-line:no-unused-expression
     expect(context.Items).not.null
-    // tslint:disable-next-line:no-unused-expression
     expect(context.Items).not.undefined
   })
 
@@ -54,9 +49,7 @@ describe('/web/http-context.ts', function() {
     let request = new FakeRequestMessage()
     let response = new FakeResponseMessage()
     let context = new HttpContext({ request, response })
-    // tslint:disable-next-line:no-unused-expression
     expect(context.Request).not.null
-    // tslint:disable-next-line:no-unused-expression
     expect(context.Request).not.undefined
   })
 
@@ -64,9 +57,7 @@ describe('/web/http-context.ts', function() {
     let request = new FakeRequestMessage()
     let response = new FakeResponseMessage()
     let context = new HttpContext({ request, response })
-    // tslint:disable-next-line:no-unused-expression
     expect(context.Response).not.null
-    // tslint:disable-next-line:no-unused-expression
     expect(context.Response).not.undefined
   })
 })

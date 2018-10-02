@@ -1,3 +1,4 @@
+/* tslint:disable */
 import { expect } from 'chai'
 import { ApplicationBuilder } from '../src/application-builder'
 import { ServiceProvider } from '../src/service-provider'
@@ -101,7 +102,6 @@ describe('/application-builder.ts', function() {
     let context = new FakeHttpContext()
     middleware(context).then(() => {
       expect(context.Response.Content).to.equal('Powered by LuckyStarry.com')
-      // tslint:disable-next-line:no-unused-expression
       expect(context.Response.IsEnd).is.true
       done()
     })
@@ -121,7 +121,6 @@ describe('/application-builder.ts', function() {
     let context = new FakeHttpContext()
     middleware(context).then(() => {
       expect(context.Response.Content).to.equal(expected)
-      // tslint:disable-next-line:no-unused-expression
       expect(context.Response.IsEnd).is.true
       done()
     })

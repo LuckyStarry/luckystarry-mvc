@@ -29,6 +29,8 @@
   },
   "main": "dist/index.js",
   "dependencies": {
+    "luckystarry-collections": "0.1.0-alpha.1",
+    "luckystarry-ioc": "^0.1.0",
     "reflect-metadata": "^0.1.12",
     "typescript": "^3.0.3"
   },

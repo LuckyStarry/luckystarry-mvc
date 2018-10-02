@@ -1,7 +1,7 @@
 import { IRouteHandler } from './route-handler'
 import { IRouter } from './router'
 import { RouteDataSnapshot } from './route-data-snapshot'
-import { IList, List } from '../../list'
+import { IList, List } from 'luckystarry-collections'
 
 export class RouteData {
   private routeHandler: IRouteHandler = null

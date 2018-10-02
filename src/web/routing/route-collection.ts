@@ -19,7 +19,7 @@ export class RouteCollection implements IRouteCollection {
     let snapshot = context.RouteData.PushState(null, null, null)
     for (let i = 0; i < this.routes.length; i++) {
       let route = this.routes[i]
-      context.RouteData.Routers.push(route)
+      context.RouteData.Routers.Add(route)
 
       try {
         await route.RouteAsync(context)

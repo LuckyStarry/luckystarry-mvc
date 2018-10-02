@@ -41,12 +41,14 @@ export abstract class MvcApplicationBuilder implements IApplicationBuilder {
 
     configureRoutes(routes)
 
-    routes.Routes.Insert(
-      0,
-      AttributeRouting.CreateAttributeMegaRoute(app.ApplicationServices)
-    )
+    throw new Error('暂未实现')
 
-    return app.UseRouter(routes.Build())
+    // routes.Routes.Insert(
+    //  0,
+    //  AttributeRouting.CreateAttributeMegaRoute(app.ApplicationServices)
+    // )
+
+    // return app.UseRouter(routes.Build())
   }
 
   public static UseMvcWithDefaultRoute(
