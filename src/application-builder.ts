@@ -1,54 +1,34 @@
-import { IServiceProvider } from './service-provider'
-import { RequestDelegate } from './request-delegate'
+import ioc, { IServiceCollection } from 'luckystarry-ioc'
+import { ControllerFactory } from './controller-factory'
+import { Application } from './application'
 
-export interface IApplicationBuilder {
-  ApplicationServices: IServiceProvider
+export class ApplicationBuider {
+  private collection: IServiceCollection
+  private port: number = 3000
 
-  Use(
-    middleware: (request: RequestDelegate) => RequestDelegate
-  ): IApplicationBuilder
+  public static Create(collection?: IServiceCollection): ApplicationBuider {
+    let application = new ApplicationBuider().UsePort(3000)
+    application.collection = collection || ioc
+    return application
+  }
 
-  Build(): RequestDelegate
-}
-
-export class ApplicationBuilder implements IApplicationBuilder {
-  private applicationServices: IServiceProvider
-  private middlewares: Array<(request: RequestDelegate) => RequestDelegate> = []
-
-  public Use(
-    middleware: (request: RequestDelegate) => RequestDelegate
-  ): IApplicationBuilder {
-    if (!middleware) {
-      throw new Error('不可使用空的中间件')
-    }
-    this.middlewares.push(middleware)
+  public UseService(
+    register: (services: IServiceCollection) => void
+  ): ApplicationBuider {
+    register(this.collection)
     return this
   }
 
-  public set ApplicationServices(value: IServiceProvider) {
-    if (!value) {
-      throw new Error('不可写入空对象')
-    }
-    this.applicationServices = value
+  public UsePort(port: number): ApplicationBuider {
+    this.port = port
+    return this
   }
 
-  public get ApplicationServices(): IServiceProvider {
-    return this.applicationServices
-  }
-
-  public Build(): RequestDelegate {
-    let app: RequestDelegate
-    if (this.middlewares.length) {
-      app = async context => Promise.resolve()
-      for (let middleware of this.middlewares.reverse()) {
-        app = middleware(app)
-      }
-    } else {
-      app = async context => {
-        context.Response.Write('Powered by LuckyStarry.com')
-        context.Response.End()
-      }
-    }
-    return app
+  public Build(): Application {
+    return new Application(
+      this.collection,
+      new ControllerFactory(this.collection),
+      this.port
+    )
   }
 }
