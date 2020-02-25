@@ -58,11 +58,6 @@ export class Application {
             this.bind(descriptor, req, res, next)
           )
           break
-        case 'ALL':
-          app.use(descriptor.Path, (req, res, next) =>
-            this.bind(descriptor, req, res, next)
-          )
-          break
         default:
           Application.logger.Error(
             `不支持的方法：[${descriptor.HttpMethod}]=>${descriptor.Path}`

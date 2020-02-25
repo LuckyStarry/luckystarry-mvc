@@ -21,7 +21,11 @@ export class ArgumentGetterQuery implements ArgumentGetter {
       return text
     } else if (this.type === 'number') {
       if (text) {
-        return parseInt(text, 10)
+        if (text.indexOf('.') > -1) {
+          return parseFloat(text)
+        } else {
+          return parseInt(text, 10)
+        }
       } else {
         return null
       }
