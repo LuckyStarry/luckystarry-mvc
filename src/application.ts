@@ -1,5 +1,4 @@
-import express from 'express'
-import core from 'express-serve-static-core'
+import express, { NextFunction, Request, Response } from 'express'
 import http from 'http'
 import { IServiceCollection } from 'luckystarry-ioc'
 import LoggerFactory from 'luckystarry-log4ts'
@@ -70,9 +69,9 @@ export class Application {
 
   public bind(
     descriptor: ActionDescriptor,
-    req: core.Request,
-    res: core.Response,
-    next: core.NextFunction
+    req: Request,
+    res: Response,
+    next: NextFunction
   ) {
     let context = DefaultHttpContext.Create(req, res)
     let controller = this.controllerFactory.CreateController(
