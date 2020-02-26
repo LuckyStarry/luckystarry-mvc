@@ -2,7 +2,7 @@
 import { expect } from 'chai'
 import * as mvc from '../src/index'
 
-describe('Index', function() {
+describe('./index.ts', function() {
   it('存在 mvc.Controller', function() {
     expect(mvc.Controller).not.null
     expect(mvc.Controller).not.undefined
