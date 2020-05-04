@@ -7,7 +7,7 @@ export function FromAuthorization<T>(
   getter: (token: string) => T,
   verify: (profile: T) => boolean
 ) {
-  return function(target: any, propertyKey: string, parameterIndex: number) {
+  return function (target: any, propertyKey: string, parameterIndex: number) {
     logger.Info(
       `${target.constructor.name}.${propertyKey} Authorization => Index:${parameterIndex}`
     )

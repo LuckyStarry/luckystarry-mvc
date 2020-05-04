@@ -1,7 +1,7 @@
 import LoggerFactory from 'luckystarry-log4ts'
-import { ArgumentGetterFiles } from '../argument-getters/argument-getter-files'
-import { ArgumentsBuilder } from '../arguments-builder'
-import { parameters } from '../parameters'
+import { ArgumentGetterFiles } from './argument-getter-files'
+import { ArgumentsBuilder } from './arguments-builder'
+import { parameters } from './parameters'
 
 export function FromFiles() {
   return function (target: any, propertyKey: string, parameterIndex: number) {

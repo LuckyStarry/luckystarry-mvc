@@ -1,7 +1,7 @@
 import LoggerFactory from 'luckystarry-log4ts'
-import { ActionDescriptor } from '../action-descriptor'
-import { HttpMethod } from '../http-method'
-import { mappings } from '../mappings'
+import { ActionDescriptor } from './action-descriptor'
+import { HttpMethod } from './http-method'
+import { mappings } from './mappings'
 export function Mapping(path: string, method: HttpMethod) {
   return function (
     target: any,

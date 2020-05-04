@@ -1,7 +1,7 @@
 import LoggerFactory from 'luckystarry-log4ts'
-import { ArgumentGetterBody } from '../argument-getters/argument-getter-body'
-import { ArgumentsBuilder } from '../arguments-builder'
-import { parameters } from '../parameters'
+import { ArgumentGetterBody } from './argument-getter-body'
+import { ArgumentsBuilder } from './arguments-builder'
+import { parameters } from './parameters'
 
 export function FromBody<T>(factory?: (body: string) => T) {
   return function (target: any, propertyKey: string, parameterIndex: number) {

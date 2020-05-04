@@ -1,6 +1,6 @@
-import { ArgumentGetterFiles } from 'argument-getters/argument-getter-files'
 import { ArgumentContext } from './argument-context'
-import { ArgumentGetter } from './argument-getters/argument-getter'
+import { ArgumentGetter } from './argument-getter'
+import { ArgumentGetterFiles } from './argument-getter-files'
 
 export class ArgumentsBuilder {
   private getters: ArgumentGetter[] = []
