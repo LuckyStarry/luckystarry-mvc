@@ -1,4 +1,4 @@
-import { ArgumentContext } from './argument-context'
+import { ArgumentContext } from '../argument-context'
 import { ArgumentGetter } from './argument-getter'
 
 export class ArgumentGetterAuthorization<T> implements ArgumentGetter {

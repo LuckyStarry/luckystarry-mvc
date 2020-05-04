@@ -1,6 +1,6 @@
-import { ArgumentContext } from './argument-context'
+import { ArgumentContext } from '../argument-context'
+import { ParameterType } from '../parameter-type'
 import { ArgumentGetter } from './argument-getter'
-import { ParameterType } from './parameter-type'
 
 export class ArgumentGetterRoute implements ArgumentGetter {
   private name: string

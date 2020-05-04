@@ -1,10 +1,10 @@
 import LoggerFactory from 'luckystarry-log4ts'
-import { ArgumentGetterHeader } from './argument-getter-header'
-import { ArgumentsBuilder } from './arguments-builder'
-import { parameters } from './parameters'
+import { ArgumentGetterHeader } from '../argument-getters/argument-getter-header'
+import { ArgumentsBuilder } from '../arguments-builder'
+import { parameters } from '../parameters'
 
 export function FromHeader(header: string) {
-  return function(target: any, propertyKey: string, parameterIndex: number) {
+  return function (target: any, propertyKey: string, parameterIndex: number) {
     logger.Info(
       `${target.constructor.name}.${propertyKey} Header:${header} => Index:${parameterIndex}`
     )

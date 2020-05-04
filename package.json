@@ -46,12 +46,14 @@
     "express": "^4.17.1",
     "luckystarry-collections": "^0.1.1",
     "luckystarry-ioc": "^0.2.1",
-    "luckystarry-log4ts": "^1.0.1"
+    "luckystarry-log4ts": "^1.0.1",
+    "multer": "^1.4.2"
   },
   "devDependencies": {
     "@types/chai": "^4.2.9",
     "@types/express": "^4.17.2",
     "@types/mocha": "^7.0.1",
+    "@types/multer": "^1.4.3",
     "@types/mysql": "^2.15.8",
     "@types/node": "^13.1.0",
     "chai": "^4.2.0",

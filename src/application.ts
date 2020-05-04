@@ -1,13 +1,21 @@
-import express, { NextFunction, Request, Response } from 'express'
+import express, {
+  NextFunction,
+  Request,
+  RequestHandler,
+  Response,
+} from 'express'
 import http from 'http'
 import { IServiceCollection } from 'luckystarry-ioc'
 import LoggerFactory from 'luckystarry-log4ts'
+import multer from 'multer'
 import { ActionDescriptor } from './action-descriptor'
 import { ArgumentContext } from './argument-context'
 import { ControllerFactory } from './controller-factory'
 import { DefaultHttpContext } from './default-http-context'
 import { mappings } from './mappings'
 import { parameters } from './parameters'
+
+const upload = multer()
 
 export class Application {
   private static logger = LoggerFactory.GetLogger(Application)
@@ -34,28 +42,28 @@ export class Application {
     const app = express()
     app.use(express.json({ verify }))
     app.use(express.urlencoded({ extended: false, verify }))
-    mappings.forEach(descriptor => {
+    mappings.forEach((descriptor) => {
       this.controllerFactory.Register(descriptor)
+      let key = `${descriptor.Controller.constructor.name}.${descriptor.ActionName}`
+      let argumentsBuilder = parameters.get(key)
+      let handlers: RequestHandler[] = []
+      if (argumentsBuilder && argumentsBuilder.NeedReadFile) {
+        handlers.push(upload.any())
+      }
+      handlers.push((req, res, next) => this.bind(descriptor, req, res, next))
+
       switch (descriptor.HttpMethod) {
         case 'GET':
-          app.get(descriptor.Path, (req, res, next) =>
-            this.bind(descriptor, req, res, next)
-          )
+          app.get(descriptor.Path, handlers)
           break
         case 'POST':
-          app.post(descriptor.Path, (req, res, next) =>
-            this.bind(descriptor, req, res, next)
-          )
+          app.post(descriptor.Path, handlers)
           break
         case 'PUT':
-          app.put(descriptor.Path, (req, res, next) =>
-            this.bind(descriptor, req, res, next)
-          )
+          app.put(descriptor.Path, handlers)
           break
         case 'DELETE':
-          app.delete(descriptor.Path, (req, res, next) =>
-            this.bind(descriptor, req, res, next)
-          )
+          app.delete(descriptor.Path, handlers)
           break
         default:
           Application.logger.Error(
@@ -96,17 +104,17 @@ export class Application {
         result = action.apply(controller, params)
         if (result instanceof Promise) {
           return result
-            .then(obj => {
+            .then((obj) => {
               res.json(obj)
             })
-            .catch(e => {
+            .catch((e) => {
               res.status(503)
               if (e) {
                 Application.logger.Error(`系统异常`, {
                   controller: controller.constructor.name,
                   action: descriptor.ActionName,
                   message: e && e.message,
-                  stack: e && e.stack
+                  stack: e && e.stack,
                 })
               }
             })
@@ -120,7 +128,7 @@ export class Application {
             controller: controller.constructor.name,
             action: descriptor.ActionName,
             message: e && e.message,
-            stack: e && e.stack
+            stack: e && e.stack,
           })
         }
       }
