@@ -44,7 +44,7 @@ export class Application {
     app.use(express.urlencoded({ extended: false, verify }))
     mappings.forEach((descriptor) => {
       this.controllerFactory.Register(descriptor)
-      let key = `${descriptor.Controller.constructor.name}.${descriptor.ActionName}`
+      let key = `${descriptor.Controller.name}.${descriptor.ActionName}`
       let argumentsBuilder = parameters.get(key)
       let handlers: RequestHandler[] = []
       if (argumentsBuilder && argumentsBuilder.NeedReadFile) {
