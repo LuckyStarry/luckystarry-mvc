@@ -11,7 +11,8 @@
     "pretest": "del-cli .nyc_output coverage -f",
     "test": "nyc mocha",
     "testonly": "mocha",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "x": "npm i --registry=https://registry.npm.taobao.org"
   },
   "nyc": {
     "extension": [
@@ -58,7 +59,7 @@
     "@types/node": "^13.1.0",
     "chai": "^4.2.0",
     "coveralls": "^3.0.9",
-    "del-cli": "^3.0.0",
+    "del-cli": "^3.0.1",
     "mocha": "^7.1.2",
     "nyc": "^15.0.0",
     "should": "^13.2.3",
