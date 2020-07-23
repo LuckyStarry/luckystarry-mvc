@@ -1,10 +1,10 @@
 .vscode
 .nyc_output
-dist
+.github
 coverage
 node_modules
 
-npm-debug.log
 *.orig
+npm-debug.log
 .travis.yml
 package-lock.json
