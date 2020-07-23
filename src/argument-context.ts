@@ -12,9 +12,7 @@ export class ArgumentContext {
   }
 
   public Stop(code: number, message?: string): void {
-    this.context.Response.Status(code)
-      .Json({ Success: false, Message: message })
-      .End()
+    this.context.Response.Status(code).Json({ Success: false, Message: message }).End()
     this.stop = true
   }
 

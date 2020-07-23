@@ -6,11 +6,7 @@ export class ArgumentGetterRoute implements ArgumentGetter {
   private name: string
   private path: string
   private type: string
-  public constructor(
-    name: string,
-    path: string,
-    type: ParameterType = 'string'
-  ) {
+  public constructor(name: string, path: string, type: ParameterType = 'string') {
     this.name = name
     this.path = path
     this.type = type

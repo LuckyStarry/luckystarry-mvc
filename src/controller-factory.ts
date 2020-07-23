@@ -11,10 +11,7 @@ export class ControllerFactory {
     this.mappings = new Map()
   }
 
-  public CreateController(
-    descriptor: ActionDescriptor,
-    context: HttpContext
-  ): Controller {
+  public CreateController(descriptor: ActionDescriptor, context: HttpContext): Controller {
     let type = this.mappings.get(`${descriptor.HttpMethod}:${descriptor.Path}`)
     if (type) {
       let controller = this.services.GetService(type)
@@ -25,9 +22,6 @@ export class ControllerFactory {
 
   public Register(descriptor: ActionDescriptor) {
     this.services.AddTransient(descriptor.Controller)
-    this.mappings.set(
-      `${descriptor.HttpMethod}:${descriptor.Path}`,
-      descriptor.Controller
-    )
+    this.mappings.set(`${descriptor.HttpMethod}:${descriptor.Path}`, descriptor.Controller)
   }
 }

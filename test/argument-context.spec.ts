@@ -5,14 +5,14 @@ import { HttpContext } from '../src/http-context'
 import { RequestContext } from '../src/request-context'
 import { ResponseContext } from '../src/response-context'
 
-describe('./argument-context.ts', function() {
-  it('存在 ArgumentContext', function() {
+describe('./argument-context.ts', function () {
+  it('存在 ArgumentContext', function () {
     expect(ArgumentContext).not.null
     expect(ArgumentContext).not.undefined
     expect(typeof ArgumentContext).to.equal('function')
   })
 
-  it('初始化 ArgumentContext', function() {
+  it('初始化 ArgumentContext', function () {
     let requestContext = new FakeRequestContext()
     let responseContext = new FakeResponseContext()
     let httpContext = new FakeHttpContext(requestContext, responseContext)
@@ -20,21 +20,19 @@ describe('./argument-context.ts', function() {
     expect(argumentContext.HttpContext).is.equal(httpContext)
   })
 
-  it('初始状态：ArgumentContext.Stopped = false', function() {
+  it('初始状态：ArgumentContext.Stopped = false', function () {
     let requestContext = new FakeRequestContext()
     let responseContext = new FakeResponseContext()
     let httpContext = new FakeHttpContext(requestContext, responseContext)
     let argumentContext = new ArgumentContext(httpContext)
     expect(argumentContext.Stopped).is.false
 
-    responseContext.Status = code => {
+    responseContext.Status = (code) => {
       expect(code).is.equal(12345)
       return responseContext
     }
-    responseContext.Json = entity => {
-      expect(JSON.stringify(entity)).is.equal(
-        JSON.stringify({ Success: false, Message: '67890' })
-      )
+    responseContext.Json = (entity) => {
+      expect(JSON.stringify(entity)).is.equal(JSON.stringify({ Success: false, Message: '67890' }))
       return responseContext
     }
     let ended = false
@@ -48,10 +46,7 @@ describe('./argument-context.ts', function() {
 })
 
 class FakeHttpContext extends HttpContext {
-  public constructor(
-    request: FakeRequestContext,
-    response: FakeResponseContext
-  ) {
+  public constructor(request: FakeRequestContext, response: FakeResponseContext) {
     super(request, response)
   }
 }

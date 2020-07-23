@@ -4,14 +4,14 @@ import { HttpContext } from '../src/http-context'
 import { RequestContext } from '../src/request-context'
 import { ResponseContext } from '../src/response-context'
 
-describe('./http-context.ts', function() {
-  it('存在 HttpContext', function() {
+describe('./http-context.ts', function () {
+  it('存在 HttpContext', function () {
     expect(HttpContext).not.null
     expect(HttpContext).not.undefined
     expect(typeof HttpContext).to.equal('function')
   })
 
-  it('初始化 HttpContext', function() {
+  it('初始化 HttpContext', function () {
     let requestContext = new FakeRequestContext()
     let responseContext = new FakeResponseContext()
     let httpContext = new FakeHttpContext(requestContext, responseContext)
@@ -21,10 +21,7 @@ describe('./http-context.ts', function() {
 })
 
 class FakeHttpContext extends HttpContext {
-  public constructor(
-    request: FakeRequestContext,
-    response: FakeResponseContext
-  ) {
+  public constructor(request: FakeRequestContext, response: FakeResponseContext) {
     super(request, response)
   }
 }

@@ -9,10 +9,7 @@ export class DefaultHttpContext extends HttpContext {
     super(request, response)
   }
 
-  public static Create(
-    request: core.Request,
-    response: core.Response
-  ): HttpContext {
+  public static Create(request: core.Request, response: core.Response): HttpContext {
     let requestContext = new DefaultRequestContext(request)
     let responseContext = new DefaultResponseContext(response)
     let httpContext = new DefaultHttpContext(requestContext, responseContext)

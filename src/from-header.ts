@@ -5,9 +5,7 @@ import { parameters } from './parameters'
 
 export function FromHeader(header: string) {
   return function (target: any, propertyKey: string, parameterIndex: number) {
-    logger.Info(
-      `${target.constructor.name}.${propertyKey} Header:${header} => Index:${parameterIndex}`
-    )
+    logger.Info(`${target.constructor.name}.${propertyKey} Header:${header} => Index:${parameterIndex}`)
     let key = `${target.constructor.name}.${propertyKey}`
     let builder = parameters.get(key)
     if (!builder) {

@@ -12,9 +12,7 @@ export class ApplicationBuider {
     return application
   }
 
-  public UseService(
-    register: (services: IServiceCollection) => void
-  ): ApplicationBuider {
+  public UseService(register: (services: IServiceCollection) => void): ApplicationBuider {
     register(this.collection)
     return this
   }
@@ -25,10 +23,6 @@ export class ApplicationBuider {
   }
 
   public Build(): Application {
-    return new Application(
-      this.collection,
-      new ControllerFactory(this.collection),
-      this.port
-    )
+    return new Application(this.collection, new ControllerFactory(this.collection), this.port)
   }
 }

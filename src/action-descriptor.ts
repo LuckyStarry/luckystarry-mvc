@@ -8,13 +8,7 @@ export class ActionDescriptor {
   private httpMethod: HttpMethod
   private descriptor: PropertyDescriptor
 
-  public constructor(
-    path: string,
-    controller: { new (): Controller },
-    actionName: string,
-    httpMethod: HttpMethod,
-    descriptor: PropertyDescriptor
-  ) {
+  public constructor(path: string, controller: { new (): Controller }, actionName: string, httpMethod: HttpMethod, descriptor: PropertyDescriptor) {
     this.path = path
     this.controller = controller
     this.actionName = actionName

@@ -4,10 +4,7 @@ import { ArgumentGetter } from './argument-getter'
 export class ArgumentGetterAuthorization<T> implements ArgumentGetter {
   private getter: (token: string) => T
   private verify: (profile: T) => boolean
-  public constructor(
-    getter: (token: string) => T,
-    verify: (profile: T) => boolean
-  ) {
+  public constructor(getter: (token: string) => T, verify: (profile: T) => boolean) {
     this.getter = getter
     this.verify = verify
   }

@@ -1,9 +1,4 @@
-import express, {
-  NextFunction,
-  Request,
-  RequestHandler,
-  Response,
-} from 'express'
+import express, { NextFunction, Request, RequestHandler, Response } from 'express'
 import http from 'http'
 import { IServiceCollection } from 'luckystarry-ioc'
 import LoggerFactory from 'luckystarry-log4ts'
@@ -23,11 +18,7 @@ export class Application {
   private controllerFactory: ControllerFactory
   private port: number
 
-  public constructor(
-    serviceCollection: IServiceCollection,
-    controllerFactory: ControllerFactory,
-    port: number
-  ) {
+  public constructor(serviceCollection: IServiceCollection, controllerFactory: ControllerFactory, port: number) {
     this.serviceCollection = serviceCollection
     this.controllerFactory = controllerFactory
     this.port = port
@@ -66,26 +57,16 @@ export class Application {
           app.delete(descriptor.Path, handlers)
           break
         default:
-          Application.logger.Error(
-            `不支持的方法：[${descriptor.HttpMethod}]=>${descriptor.Path}`
-          )
+          Application.logger.Error(`不支持的方法：[${descriptor.HttpMethod}]=>${descriptor.Path}`)
       }
     }, this)
     const server = http.createServer(app)
     server.listen(this.port)
   }
 
-  public bind(
-    descriptor: ActionDescriptor,
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ) {
+  public bind(descriptor: ActionDescriptor, req: Request, res: Response, next: NextFunction) {
     let context = DefaultHttpContext.Create(req, res)
-    let controller = this.controllerFactory.CreateController(
-      descriptor,
-      context
-    )
+    let controller = this.controllerFactory.CreateController(descriptor, context)
     let action: Function = controller[descriptor.ActionName]
     if (action) {
       let key = `${controller.constructor.name}.${descriptor.ActionName}`
@@ -114,7 +95,7 @@ export class Application {
                   controller: controller.constructor.name,
                   action: descriptor.ActionName,
                   message: e && e.message,
-                  stack: e && e.stack,
+                  stack: e && e.stack
                 })
               }
             })
@@ -128,7 +109,7 @@ export class Application {
             controller: controller.constructor.name,
             action: descriptor.ActionName,
             message: e && e.message,
-            stack: e && e.stack,
+            stack: e && e.stack
           })
         }
       }

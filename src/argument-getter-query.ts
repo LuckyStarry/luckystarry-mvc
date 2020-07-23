@@ -6,11 +6,7 @@ export class ArgumentGetterQuery implements ArgumentGetter {
   private name: string
   private param: string
   private type: string
-  public constructor(
-    name: string,
-    param: string,
-    type: ParameterType = 'string'
-  ) {
+  public constructor(name: string, param: string, type: ParameterType = 'string') {
     this.name = name
     this.param = param
     this.type = type
