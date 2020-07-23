@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "luckystarry-collections": "^0.1.1",
+    "luckystarry-collections": "^1.0.0",
     "luckystarry-ioc": "^0.2.1",
     "luckystarry-log4ts": "^1.0.1",
     "multer": "^1.4.2"
