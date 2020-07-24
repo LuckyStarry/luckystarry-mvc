@@ -23,6 +23,16 @@ npm i -S luckystarry-mvc
 
 ## Usage
 
+一个简单的启动用例如下所示：
+
+```javascript
+#!/usr/bin/env node
+
+import * as mvc from 'luckystarry-mvc'
+
+mvc.ApplicationBuider.Create().Build().Start()
+```
+
 为了使用 _注解_ 的特性，请在项目运行目录添加 _tsconfig.json_
 
 ```json
