@@ -1,11 +1,14 @@
 # LuckyStarry-MVC
 
-一个仿 ASP.NET MVC 的 NODEJS 框架
+一个轻量的 WebApi 服务
 
 [![Build Status](https://www.travis-ci.org/LuckyStarry/luckystarry-mvc.svg?branch=master)](https://www.travis-ci.org/LuckyStarry/luckystarry-mvc?branch=master)
+[![Build Test](https://github.com/LuckyStarry/luckystarry-mvc/workflows/Build%20Test/badge.svg?branch=master)](https://github.com/LuckyStarry/luckystarry-mvc/actions?query=workflow%3A%22Build+Test%22+branch%3Amaster)
 [![Coverage Status](https://coveralls.io/repos/github/LuckyStarry/luckystarry-mvc/badge.svg?branch=master)](https://coveralls.io/github/LuckyStarry/luckystarry-mvc?branch=master)
 [![Npm Status](https://img.shields.io/npm/v/luckystarry-mvc.svg)](https://www.npmjs.com/package/luckystarry-mvc)
-[![codebeat badge](https://codebeat.co/badges/f1c54a62-2552-484f-92d5-fd3166e3d468)](https://codebeat.co/projects/github-com-luckystarry-luckystarry-mvc-master)
+[![install size](https://packagephobia.now.sh/badge?p=luckystarry-mvc)](https://packagephobia.now.sh/result?p=luckystarry-mvc)
+[![codebeat badge](https://codebeat.co/badges/3265bab9-f87a-4e77-8d2a-d4bf75b5592b)](https://codebeat.co/projects/github-com-luckystarry-luckystarry-mvc-master)
+[![Known Vulnerabilities](https://snyk.io/test/github/LuckyStarry/luckystarry-mvc/badge.svg?targetFile=package.json)](https://snyk.io/test/github/LuckyStarry/luckystarry-mvc?targetFile=package.json)
 [![License Status](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://raw.githubusercontent.com/LuckyStarry/luckystarry-mvc/master/LICENSE)
 
 ## Warning
@@ -20,23 +23,14 @@ npm i -S luckystarry-mvc
 
 ## Usage
 
-简单的安装代码如下所示：
+一个简单的启动用例如下所示：
 
-```typescript
-// index.ts
-import luckystarry from 'luckystarry-mvc'
+```javascript
+#!/usr/bin/env node
 
-@luckystarry.Injectable()
-@luckystarry.web.mvc.ControllerAttribute()
-class FooController extends luckystarry.web.mvc.Controller {
-  @luckystarry.web.mvc.RouteAttribute()
-  public Bar(): string {
-    return 'Hello World'
-  }
-}
+import * as mvc from 'luckystarry-mvc'
 
-const application = luckystarry.Build()
-application.Start()
+mvc.ApplicationBuider.Create().Build().Start()
 ```
 
 为了使用 _注解_ 的特性，请在项目运行目录添加 _tsconfig.json_
@@ -55,8 +49,6 @@ application.Start()
 ```bash
 ts-node/register index.ts
 ```
-
-当站点启动后，在浏览器中输入 `http://localhost:3000/foo/bar` 地址，就可以得到响应 `Hello World`
 
 ## LICENSE
 

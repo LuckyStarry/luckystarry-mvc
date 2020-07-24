@@ -36,11 +36,23 @@ jobs:
         - npm run build
         - echo "NPM Building Finished."
       deploy:
+        edge: true
         provider: npm
         email: starry@vip.qq.com
         api_key: '$NPM_TOKEN'
         skip_cleanup: true
         tag: beta
+        on:
+          tags: true
+
+    - stage: tagged-release
+      if: tag =~ ^v\d+\.\d+\.\d+$
+      deploy:
+        provider: releases
+        api_key: '$GH_TOKEN'
+        skip_cleanup: false
+        on:
+          tags: true
 
     - stage: npm-release
       if: tag =~ ^v\d+\.\d+\.\d+$
@@ -49,7 +61,10 @@ jobs:
         - npm run build
         - echo "NPM Building Finished."
       deploy:
+        edge: true
         provider: npm
         email: starry@vip.qq.com
         api_key: '$NPM_TOKEN'
         skip_cleanup: true
+        on:
+          tags: true

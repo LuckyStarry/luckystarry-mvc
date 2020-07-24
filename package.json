@@ -1,7 +1,7 @@
 {
   "name": "luckystarry-mvc",
-  "version": "0.0.4-alpha.8",
-  "description": "一个轻量的类似于 ASP.NET MVC 的 WebApi 服务",
+  "version": "0.1.0-7",
+  "description": "一个轻量的 WebApi 服务",
   "keywords": [
     "mvc"
   ],
@@ -11,7 +11,8 @@
     "pretest": "del-cli .nyc_output coverage -f",
     "test": "nyc mocha",
     "testonly": "mocha",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "x": "npm i --registry=https://registry.npm.taobao.org"
   },
   "nyc": {
     "extension": [
@@ -28,26 +29,7 @@
     "all": true
   },
   "main": "dist/index.js",
-  "dependencies": {
-    "reflect-metadata": "^0.1.12",
-    "typescript": "^3.0.3"
-  },
   "license": "MIT",
-  "devDependencies": {
-    "@types/chai": "^4.1.4",
-    "@types/mocha": "^5.2.5",
-    "@types/node": "^10.9.2",
-    "chai": "^4.1.2",
-    "coveralls": "^3.0.2",
-    "cross-env": "^5.2.0",
-    "del-cli": "^1.1.0",
-    "mocha": "^5.2.0",
-    "nyc": "^13.0.1",
-    "should": "^13.2.3",
-    "ts-node": "^7.0.1",
-    "tslint": "^5.11.0",
-    "tslint-config-standard": "^8.0.1"
-  },
   "repository": {
     "type": "git",
     "url": "git+ssh:git@github.com:LuckyStarry/luckystarry-mvc.git"
@@ -60,5 +42,30 @@
     "name": "SUN BO",
     "email": "starry@vip.qq.com",
     "url": "https://www.luckystarry.com"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "luckystarry-collections": "^1.0.0",
+    "luckystarry-ioc": "^0.2.1",
+    "luckystarry-log4ts": "^1.0.1",
+    "multer": "^1.4.2"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.9",
+    "@types/express": "^4.17.2",
+    "@types/mocha": "^7.0.1",
+    "@types/multer": "^1.4.3",
+    "@types/mysql": "^2.15.8",
+    "@types/node": "^13.1.0",
+    "chai": "^4.2.0",
+    "coveralls": "^3.0.9",
+    "del-cli": "^3.0.1",
+    "mocha": "^7.1.2",
+    "nyc": "^15.0.0",
+    "should": "^13.2.3",
+    "ts-node": "^8.5.4",
+    "tsconfig-paths": "^3.9.0",
+    "tslint": "^5.20.1",
+    "tslint-config-standard": "^9.0.0"
   }
 }
