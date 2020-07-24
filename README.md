@@ -3,7 +3,7 @@
 一个轻量的 WebApi 服务
 
 [![Build Status](https://www.travis-ci.org/LuckyStarry/luckystarry-mvc.svg?branch=master)](https://www.travis-ci.org/LuckyStarry/luckystarry-mvc?branch=master)
-[![Build Test](https://github.com/LuckyStarry/luckystarry-mvc/workflows/Build%20Test/badge.svg?branch=master)](https://github.com/LuckyStarry/luckystarry-mvc/actions?query=workflow%3A%22Build+Test%22+branch%3Amaster)
+[![Build Test](https://github.com/LuckyStarry/luckystarry-mvc/workflows/CI/badge.svg?branch=master)](https://github.com/LuckyStarry/luckystarry-mvc/actions?query=workflow%3A%22CI%22+branch%3Amaster)
 [![Coverage Status](https://coveralls.io/repos/github/LuckyStarry/luckystarry-mvc/badge.svg?branch=master)](https://coveralls.io/github/LuckyStarry/luckystarry-mvc?branch=master)
 [![Npm Status](https://img.shields.io/npm/v/luckystarry-mvc.svg)](https://www.npmjs.com/package/luckystarry-mvc)
 [![install size](https://packagephobia.now.sh/badge?p=luckystarry-mvc)](https://packagephobia.now.sh/result?p=luckystarry-mvc)
