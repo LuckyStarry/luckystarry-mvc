@@ -44,7 +44,7 @@
     "url": "https://www.luckystarry.com"
   },
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "luckystarry-collections": "^1.0.0",
     "luckystarry-ioc": "^0.2.1",
     "luckystarry-log4ts": "^1.0.1",
