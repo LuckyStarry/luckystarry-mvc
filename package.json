@@ -48,7 +48,7 @@
     "luckystarry-collections": "^1.0.0",
     "luckystarry-ioc": "^0.2.1",
     "luckystarry-log4ts": "^1.0.1",
-    "multer": "^1.4.2"
+    "multer": "^2.0.1"
   },
   "devDependencies": {
     "@types/chai": "^4.2.9",
